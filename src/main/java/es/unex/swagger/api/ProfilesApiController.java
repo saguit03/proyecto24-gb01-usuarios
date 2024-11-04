@@ -44,6 +44,8 @@ import java.util.Map;
 @RestController
 public class ProfilesApiController implements ProfilesApi {
 
+    private final PerfilUsuarioMapper perfilUsuarioMapper;
+
     private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
 
     private final ObjectMapper objectMapper;
@@ -112,8 +114,9 @@ public class ProfilesApiController implements ProfilesApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<PerfilUsuario>(objectMapper.readValue("{\n  \"Pin\" : \"1234\",\n  \"id-usuario\" : 1,\n  \"id-perfil\" : 1,\n  \"Nombre-perfil\" : \"Pablito\"\n}", PerfilUsuario.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+                perfilUsuarioRepository.save(PerfilUsuarioMapper.toEntity(body));
+                return new ResponseEntity<PerfilUsuario>(body, HttpStatus.CREATED);
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<PerfilUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
