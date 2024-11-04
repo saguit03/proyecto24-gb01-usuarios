@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class PerfilUsuarioEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "id_perfil")
     private Long idPerfil;
 

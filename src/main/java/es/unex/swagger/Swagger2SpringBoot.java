@@ -1,7 +1,9 @@
 package es.unex.swagger;
 
 
+import es.unex.asee.gb01.contents.Entities.PerfilUsuarioEntity;
 import es.unex.asee.gb01.contents.Entities.UserEntity;
+import es.unex.asee.gb01.contents.repositories.PerfilUsuarioRepository;
 import es.unex.asee.gb01.contents.repositories.UserRepository;
 import es.unex.swagger.Swagger2SpringBoot.ExitException;
 import es.unex.swagger.configuration.LocalDateConverter;
@@ -36,6 +38,7 @@ import java.util.List;
 @ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents", "es.unex.asee.gb01.contents.repositories", "es.unex.asee.gb01.contents.Entities"})
 public class Swagger2SpringBoot implements CommandLineRunner {
     @Autowired UserRepository userRepository;
+    @Autowired PerfilUsuarioRepository perfilUsuarioRepository;
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -74,9 +77,12 @@ public class Swagger2SpringBoot implements CommandLineRunner {
     @PostConstruct
     public void init() {
         List<UserEntity> listaUsuarios = new ArrayList<>();
-        // Long id = new Long(1);
+        List<PerfilUsuarioEntity> listaPerfilUsuarios = new ArrayList<>();
+        //Long id = Long.valueOf(1);
         listaUsuarios.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
         userRepository.saveAll(listaUsuarios);
+        //listaPerfilUsuarios.add(new PerfilUsuarioEntity(id,"Perico", "12345"));
+        //perfilUsuarioRepository.saveAll(listaPerfilUsuarios);
         
     }
 }

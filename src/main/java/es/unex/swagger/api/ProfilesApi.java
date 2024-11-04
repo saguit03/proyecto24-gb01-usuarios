@@ -52,7 +52,7 @@ public interface ProfilesApi {
         @ApiResponse(responseCode = "404", description = "Usuario o perfil de usuario no encontrado") })
     @RequestMapping(value = "/profiles/{idProfile}",
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    ResponseEntity<PerfilUsuario> deleteUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
