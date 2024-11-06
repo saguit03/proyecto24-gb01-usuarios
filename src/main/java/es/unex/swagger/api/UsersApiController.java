@@ -188,34 +188,50 @@ public class UsersApiController implements UsersApi {
     }
 
     public ResponseEntity<User> userLogIn(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserLogIn body, HttpServletResponse response
-) {
+    ) {
         String accept = request.getHeader("Accept");
-        
+
         // if (accept != null && accept.contains("application/json")) {
-            try {
-                User user = null;
-                if(userRepository.findByUsername(body.getUsername()) != null){
+        try {
+            //         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-                     user = UserMapper.toModel(userRepository.findByUsername(body.getUsername()));
-                     if(user.getPassword() != body.getPassword().trim()){
-                        log.error("La contraseña es incorrecta");
-                        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
-                     }
-                }else{
-                    log.error("El usuario no existe");
-                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            // if (auth != null && auth.isAuthenticated()) {
+            //     // Generar una cookie de sesión segura y de solo-lectura
+            //     Cookie sessionCookie = new Cookie("SESSIONID", auth.getName()); // Ejemplo de nombre de cookie
+            //     sessionCookie.setHttpOnly(true);
+            //     sessionCookie.setSecure(true);
+            //     sessionCookie.setPath("/");
+            //     sessionCookie.setMaxAge(86400); // 24 horas
+
+            //     response.addCookie(sessionCookie); // Agregar la cookie a la respuesta
+            // }
+            User user = null;
+            if(userRepository.findByUsername(body.getUsername()) != null){
+
+                user = UserMapper.toModel(userRepository.findByUsername(body.getUsername()));
+                if(!user.getPassword().equals(body.getPassword().trim()) ){
+                    log.error("La contraseña es incorrecta");
+                    return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
                 }
-                
-
-                Cookie cookieUser = new Cookie("User", user.toString());
-                // cookieUser.setPath("/");
-                // response.addCookie(cookieUser);
-                
-                return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
-            } catch (Exception e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }else{
+                log.error("El usuario no existe");
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+            // GsonJsonParser json = new GsonJsonParser();
+
+            Cookie cookieUser = new Cookie("User", user.getEmail());
+            cookieUser.setMaxAge(60 * 60 * 24);
+            System.out.println(cookieUser.getValue());
+            cookieUser.setPath("/");
+            cookieUser.setSecure(false);
+            response.addCookie(cookieUser);
+            // System.out.println("cookie usando el json mapper: "+ Json.mapper(user));
+
+            return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            log.error("Couldn't serialize response for content type application/json", e);
+            return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         // }
 
         // return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);

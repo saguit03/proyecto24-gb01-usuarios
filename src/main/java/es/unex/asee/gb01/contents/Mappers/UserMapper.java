@@ -6,6 +6,8 @@ import es.unex.swagger.model.PerfilUsuario;
 import es.unex.asee.gb01.contents.Entities.UserEntity;
 
 import es.unex.asee.gb01.contents.Entities.PerfilUsuarioEntity;
+import es.unex.asee.gb01.contents.Entities.TarjetaCreditoEntity;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -23,7 +25,7 @@ public class UserMapper {
                 userModel.getEmail(),
                 userModel.getPassword()
         );
-        
+
         userEntity.setId(userModel.getId());
         userEntity.setFechaAltaReciente(userModel.getFechaAltaReciente());
         userEntity.setFotoPerfil(userModel.getFotoPerfil());
@@ -31,10 +33,8 @@ public class UserMapper {
 
         // Convertir perfiles de usuario
         if (userModel.getPerfilesUsuario() != null) {
-            List<PerfilUsuarioEntity> lista = new ArrayList<>();
-            for (int i = 0; i < userModel.getPerfilesUsuario().size(); i++) {
-                lista.add(PerfilUsuarioMapper.toEntity(userModel.getPerfilesUsuario().get(i)));
-            }
+            List<PerfilUsuarioEntity> lista = PerfilUsuarioMapper.toListEntity(userModel.getPerfilesUsuario());
+            userEntity.setPerfilesUsuario(lista);
         }
 
         // Convertir tarjetas de crédito
@@ -44,6 +44,11 @@ public class UserMapper {
             //     .map(TarjetaCreditoMapper::toEntity)
             //     .collect(Collectors.toList())
             // );
+            List<TarjetaCreditoEntity> lista = new ArrayList<>();
+            for (int i = 0; i < userModel.getTarjetasDeCredito().size(); i++) {
+                lista.add(TarjetaCreditoMapper.toEntity(userModel.getTarjetasDeCredito().get(i)));
+            }
+            userEntity.setTarjetasDeCredito(lista);
         }
 
         // Convertir idioma
@@ -68,7 +73,7 @@ public class UserMapper {
         userModel.setFechaAltaReciente(userEntity.getFechaAltaReciente());
         userModel.setFotoPerfil(userEntity.getFotoPerfil());
         userModel.setFechaRegistro(userEntity.getFechaRegistro());
-        
+
         // // Convertir perfiles de usuario
         // if (userEntity.getPerfilesUsuario() != null) {
         //     userModel.setPerfilesUsuario(
@@ -98,43 +103,43 @@ public class UserMapper {
         if (listUserEntity.size() == 0) return null;
         List<User> listUserModel = new ArrayList<>();
         for (UserEntity userEntity : listUserEntity) {
-            
-        User userModel = new User();
-        userModel.setId(userEntity.getId());
-        userModel.setNombre(userEntity.getNombre());
-        userModel.setApellidos(userEntity.getApellidos());
-        userModel.setUsername(userEntity.getUsername());
-        userModel.setEmail(userEntity.getEmail());
-        userModel.setPassword(userEntity.getPassword());
-        userModel.setFechaAltaReciente(userEntity.getFechaAltaReciente());
-        userModel.setFotoPerfil(userEntity.getFotoPerfil());
-        userModel.setFechaRegistro(userEntity.getFechaRegistro());
 
-        // // Convertir perfiles de usuario
-        // if (userEntity.getPerfilesUsuario() != null) {
-        //     userModel.setPerfilesUsuario(
-        //         userEntity.getPerfilesUsuario().stream()
-        //         .map(PerfilUsuarioMapper::toModel(this))
-        //         .collect(Collectors.toList())
-        //     );
-        // }
+            User userModel = new User();
+            userModel.setId(userEntity.getId());
+            userModel.setNombre(userEntity.getNombre());
+            userModel.setApellidos(userEntity.getApellidos());
+            userModel.setUsername(userEntity.getUsername());
+            userModel.setEmail(userEntity.getEmail());
+            userModel.setPassword(userEntity.getPassword());
+            userModel.setFechaAltaReciente(userEntity.getFechaAltaReciente());
+            userModel.setFotoPerfil(userEntity.getFotoPerfil());
+            userModel.setFechaRegistro(userEntity.getFechaRegistro());
 
-        // // Convertir tarjetas de crédito
-        // if (userEntity.getTarjetasDeCredito() != null) {
-        //     userModel.setTarjetasDeCredito(
-        //         userEntity.getTarjetasDeCredito().stream()
-        //         .map(TarjetaCreditoMapper::toModel)
-        //         .collect(Collectors.toList())
-        //     );
-        // }
+            // // Convertir perfiles de usuario
+            // if (userEntity.getPerfilesUsuario() != null) {
+            //     userModel.setPerfilesUsuario(
+            //         userEntity.getPerfilesUsuario().stream()
+            //         .map(PerfilUsuarioMapper::toModel(this))
+            //         .collect(Collectors.toList())
+            //     );
+            // }
 
-        // Convertir idioma
-        if (userEntity.getIdioma() != null) {
-            userModel.setIdioma(LanguageMapper.toModel(userEntity.getIdioma()));
-        }
+            // // Convertir tarjetas de crédito
+            // if (userEntity.getTarjetasDeCredito() != null) {
+            //     userModel.setTarjetasDeCredito(
+            //         userEntity.getTarjetasDeCredito().stream()
+            //         .map(TarjetaCreditoMapper::toModel)
+            //         .collect(Collectors.toList())
+            //     );
+            // }
+
+            // Convertir idioma
+            if (userEntity.getIdioma() != null) {
+                userModel.setIdioma(LanguageMapper.toModel(userEntity.getIdioma()));
+            }
 
 
-        listUserModel.add(userModel);
+            listUserModel.add(userModel);
         }
 
 

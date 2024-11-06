@@ -79,7 +79,7 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         List<UserEntity> listaUsuarios = new ArrayList<>();
         List<PerfilUsuarioEntity> listaPerfilUsuarios = new ArrayList<>();
         //Long id = Long.valueOf(1);
-        listaUsuarios.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
+        //listaUsuarios.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
         userRepository.saveAll(listaUsuarios);
         //listaPerfilUsuarios.add(new PerfilUsuarioEntity(id,"Perico", "12345"));
         //perfilUsuarioRepository.saveAll(listaPerfilUsuarios);

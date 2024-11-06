@@ -4,7 +4,7 @@ import es.unex.asee.gb01.contents.Entities.TarjetaCreditoEntity;
 import es.unex.swagger.model.TarjetaCredito;
 
 public class TarjetaCreditoMapper {
-    public TarjetaCreditoEntity toEntity (TarjetaCredito tarjetaCredito) {
+    public static TarjetaCreditoEntity toEntity (TarjetaCredito tarjetaCredito) {
         TarjetaCreditoEntity entity = new TarjetaCreditoEntity();
         
         entity.setIBAN(tarjetaCredito.getIBAN());
@@ -14,7 +14,7 @@ public class TarjetaCreditoMapper {
         return entity;
     }
 
-    public TarjetaCredito toModel(TarjetaCreditoEntity tarjetaCreditoEntity){
+    public static TarjetaCredito toModel(TarjetaCreditoEntity tarjetaCreditoEntity){
         TarjetaCredito model = new TarjetaCredito();
         model.setIBAN(tarjetaCreditoEntity.getIBAN());
         model.setBanco(tarjetaCreditoEntity.getBanco());

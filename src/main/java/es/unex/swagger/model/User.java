@@ -82,8 +82,8 @@ public class User   {
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private Language idioma = null;
 
-public User(){
-    
+  public User(){
+
   }
 
   public User(String username, String password){
@@ -91,7 +91,7 @@ public User(){
     this.password = password;
   }
 
-  public User id(Long id) { 
+  public User id(Long id) {
 
     this.id = id;
     return this;
@@ -101,22 +101,22 @@ public User(){
    * Get id
    * @return id
    **/
-  
+
   @Schema(example = "1", required = true, description = "")
-  
+
   @NotNull
-  public Long getId() {  
+  public Long getId() {
     return id;
   }
 
 
 
-  public void setId(Long id) { 
+  public void setId(Long id) {
 
     this.id = id;
   }
 
-  public User nombre(String nombre) { 
+  public User nombre(String nombre) {
 
     this.nombre = nombre;
     return this;
@@ -126,22 +126,22 @@ public User(){
    * Get nombre
    * @return nombre
    **/
-  
+
   @Schema(example = "Pablo", required = true, description = "")
-  
+
   @NotNull
-  public String getNombre() {  
+  public String getNombre() {
     return nombre;
   }
 
 
 
-  public void setNombre(String nombre) { 
+  public void setNombre(String nombre) {
 
     this.nombre = nombre;
   }
 
-  public User apellidos(String apellidos) { 
+  public User apellidos(String apellidos) {
 
     this.apellidos = apellidos;
     return this;
@@ -151,22 +151,22 @@ public User(){
    * Get apellidos
    * @return apellidos
    **/
-  
+
   @Schema(example = "Fernandez", required = true, description = "")
-  
+
   @NotNull
-  public String getApellidos() {  
+  public String getApellidos() {
     return apellidos;
   }
 
 
 
-  public void setApellidos(String apellidos) { 
+  public void setApellidos(String apellidos) {
 
     this.apellidos = apellidos;
   }
 
-  public User username(String username) { 
+  public User username(String username) {
 
     this.username = username;
     return this;
@@ -176,22 +176,22 @@ public User(){
    * Get username
    * @return username
    **/
-  
+
   @Schema(example = "pafernandez", required = true, description = "")
-  
+
   @NotNull
-  public String getUsername() {  
+  public String getUsername() {
     return username;
   }
 
 
 
-  public void setUsername(String username) { 
+  public void setUsername(String username) {
 
     this.username = username;
   }
 
-  public User email(String email) { 
+  public User email(String email) {
 
     this.email = email;
     return this;
@@ -201,22 +201,22 @@ public User(){
    * Get email
    * @return email
    **/
-  
+
   @Schema(example = "pafernandez@gmail.com", required = true, description = "")
-  
+
   @NotNull
-  public String getEmail() {  
+  public String getEmail() {
     return email;
   }
 
 
 
-  public void setEmail(String email) { 
+  public void setEmail(String email) {
 
     this.email = email;
   }
 
-  public User password(String password) { 
+  public User password(String password) {
 
     this.password = password;
     return this;
@@ -226,22 +226,22 @@ public User(){
    * Get password
    * @return password
    **/
-  
+
   @Schema(example = "pafernandez", required = true, description = "")
-  
+
   @NotNull
-  public String getPassword() {  
+  public String getPassword() {
     return password;
   }
 
 
 
-  public void setPassword(String password) { 
+  public void setPassword(String password) {
 
     this.password = password;
   }
 
-  public User fechaAltaReciente(String fechaAltaReciente) { 
+  public User fechaAltaReciente(String fechaAltaReciente) {
 
     this.fechaAltaReciente = fechaAltaReciente;
     return this;
@@ -251,20 +251,20 @@ public User(){
    * Get fechaAltaReciente
    * @return fechaAltaReciente
    **/
-  
+
   @Schema(example = "8/9/2024", description = "")
-  
-  public String getFechaAltaReciente() {  
+
+  public String getFechaAltaReciente() {
     return fechaAltaReciente;
   }
 
 
 
-  public void setFechaAltaReciente(String fechaAltaReciente) { 
+  public void setFechaAltaReciente(String fechaAltaReciente) {
     this.fechaAltaReciente = fechaAltaReciente;
   }
 
-  public User fotoPerfil(String fotoPerfil) { 
+  public User fotoPerfil(String fotoPerfil) {
 
     this.fotoPerfil = fotoPerfil;
     return this;
@@ -274,20 +274,20 @@ public User(){
    * Get fotoPerfil
    * @return fotoPerfil
    **/
-  
+
   @Schema(example = "foto_perfil.png", description = "")
-  
-  public String getFotoPerfil() {  
+
+  public String getFotoPerfil() {
     return fotoPerfil;
   }
 
 
 
-  public void setFotoPerfil(String fotoPerfil) { 
+  public void setFotoPerfil(String fotoPerfil) {
     this.fotoPerfil = fotoPerfil;
   }
 
-  public User fechaRegistro(String fechaRegistro) { 
+  public User fechaRegistro(String fechaRegistro) {
 
     this.fechaRegistro = fechaRegistro;
     return this;
@@ -297,20 +297,20 @@ public User(){
    * Get fechaRegistro
    * @return fechaRegistro
    **/
-  
+
   @Schema(example = "01/01/2020", description = "")
-  
-  public String getFechaRegistro() {  
+
+  public String getFechaRegistro() {
     return fechaRegistro;
   }
 
 
 
-  public void setFechaRegistro(String fechaRegistro) { 
+  public void setFechaRegistro(String fechaRegistro) {
     this.fechaRegistro = fechaRegistro;
   }
 
-  public User perfilesUsuario(List<PerfilUsuario> perfilesUsuario) { 
+  public User perfilesUsuario(List<PerfilUsuario> perfilesUsuario) {
 
     this.perfilesUsuario = perfilesUsuario;
     return this;
@@ -328,20 +328,20 @@ public User(){
    * Get perfilesUsuario
    * @return perfilesUsuario
    **/
-  
+
   @Schema(description = "")
   @Valid
-@Size(min=1)   public List<PerfilUsuario> getPerfilesUsuario() {  
+  @Size(min=1)   public List<PerfilUsuario> getPerfilesUsuario() {
     return perfilesUsuario;
   }
 
 
 
-  public void setPerfilesUsuario(List<PerfilUsuario> perfilesUsuario) { 
+  public void setPerfilesUsuario(List<PerfilUsuario> perfilesUsuario) {
     this.perfilesUsuario = perfilesUsuario;
   }
 
-  public User tarjetasDeCredito(List<TarjetaCredito> tarjetasDeCredito) { 
+  public User tarjetasDeCredito(List<TarjetaCredito> tarjetasDeCredito) {
 
     this.tarjetasDeCredito = tarjetasDeCredito;
     return this;
@@ -359,20 +359,20 @@ public User(){
    * Get tarjetasDeCredito
    * @return tarjetasDeCredito
    **/
-  
+
   @Schema(description = "")
   @Valid
-  public List<TarjetaCredito> getTarjetasDeCredito() {  
+  public List<TarjetaCredito> getTarjetasDeCredito() {
     return tarjetasDeCredito;
   }
 
 
 
-  public void setTarjetasDeCredito(List<TarjetaCredito> tarjetasDeCredito) { 
+  public void setTarjetasDeCredito(List<TarjetaCredito> tarjetasDeCredito) {
     this.tarjetasDeCredito = tarjetasDeCredito;
   }
 
-  public User idioma(Language idioma) { 
+  public User idioma(Language idioma) {
 
     this.idioma = idioma;
     return this;
@@ -382,17 +382,17 @@ public User(){
    * Get idioma
    * @return idioma
    **/
-  
+
   @Schema(description = "")
-  
-@Valid
-  public Language getIdioma() {  
+
+  @Valid
+  public Language getIdioma() {
     return idioma;
   }
 
 
 
-  public void setIdioma(Language idioma) { 
+  public void setIdioma(Language idioma) {
     this.idioma = idioma;
   }
 
@@ -406,17 +406,17 @@ public User(){
     }
     User user = (User) o;
     return Objects.equals(this.id, user.id) &&
-        Objects.equals(this.nombre, user.nombre) &&
-        Objects.equals(this.apellidos, user.apellidos) &&
-        Objects.equals(this.username, user.username) &&
-        Objects.equals(this.email, user.email) &&
-        Objects.equals(this.password, user.password) &&
-        Objects.equals(this.fechaAltaReciente, user.fechaAltaReciente) &&
-        Objects.equals(this.fotoPerfil, user.fotoPerfil) &&
-        Objects.equals(this.fechaRegistro, user.fechaRegistro) &&
-        Objects.equals(this.perfilesUsuario, user.perfilesUsuario) &&
-        Objects.equals(this.tarjetasDeCredito, user.tarjetasDeCredito) &&
-        Objects.equals(this.idioma, user.idioma);
+            Objects.equals(this.nombre, user.nombre) &&
+            Objects.equals(this.apellidos, user.apellidos) &&
+            Objects.equals(this.username, user.username) &&
+            Objects.equals(this.email, user.email) &&
+            Objects.equals(this.password, user.password) &&
+            Objects.equals(this.fechaAltaReciente, user.fechaAltaReciente) &&
+            Objects.equals(this.fotoPerfil, user.fotoPerfil) &&
+            Objects.equals(this.fechaRegistro, user.fechaRegistro) &&
+            Objects.equals(this.perfilesUsuario, user.perfilesUsuario) &&
+            Objects.equals(this.tarjetasDeCredito, user.tarjetasDeCredito) &&
+            Objects.equals(this.idioma, user.idioma);
   }
 
   @Override
@@ -428,18 +428,18 @@ public User(){
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("{\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    nombre: ").append(toIndentedString(nombre)).append("\n");
-    sb.append("    apellidos: ").append(toIndentedString(apellidos)).append("\n");
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
-    sb.append("    fechaAltaReciente: ").append(toIndentedString(fechaAltaReciente)).append("\n");
-    sb.append("    fotoPerfil: ").append(toIndentedString(fotoPerfil)).append("\n");
-    sb.append("    fechaRegistro: ").append(toIndentedString(fechaRegistro)).append("\n");
-    sb.append("    perfilesUsuario: ").append(toIndentedString(perfilesUsuario)).append("\n");
-    sb.append("    tarjetasDeCredito: ").append(toIndentedString(tarjetasDeCredito)).append("\n");
+
+    sb.append("    id: ").append(toIndentedString(id)).append(",\n");
+    sb.append("    nombre: ").append(toIndentedString(nombre)).append(", \n");
+    sb.append("    apellidos: ").append(toIndentedString(apellidos)).append(",\n");
+    sb.append("    username: ").append(toIndentedString(username)).append(",\n");
+    sb.append("    email: ").append(toIndentedString(email)).append(",\n");
+    sb.append("    password: ").append(toIndentedString(password)).append(",\n");
+    sb.append("    fechaAltaReciente: ").append(toIndentedString(fechaAltaReciente)).append(",\n");
+    sb.append("    fotoPerfil: ").append(toIndentedString(fotoPerfil)).append(",\n");
+    sb.append("    fechaRegistro: ").append(toIndentedString(fechaRegistro)).append(",\n");
+    sb.append("    perfilesUsuario: ").append(toIndentedString(perfilesUsuario)).append(",\n");
+    sb.append("    tarjetasDeCredito: ").append(toIndentedString(tarjetasDeCredito)).append(",\n");
     sb.append("    idioma: ").append(toIndentedString(idioma)).append("\n");
     sb.append("}");
     return sb.toString();
