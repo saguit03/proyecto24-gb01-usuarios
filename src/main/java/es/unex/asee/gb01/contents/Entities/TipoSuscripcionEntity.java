@@ -21,6 +21,21 @@ public class TipoSuscripcionEntity {
     @Column(name = "cantidad", nullable = false)
     private Float cantidad;
 
+    public TipoSuscripcionEntity() {
+
+    }
+
+    public TipoSuscripcionEntity(Long idTipoSuscripcion, String nombreTipoSuscripcion, Float cantidad) {
+        this.idTipoSuscripcion = idTipoSuscripcion;
+        this.nombreTipoSuscripcion = nombreTipoSuscripcion;
+        this.cantidad = cantidad;
+    }
+
+    public TipoSuscripcionEntity(String nombreTipoSuscripcion, Float cantidad) {
+        this.nombreTipoSuscripcion = nombreTipoSuscripcion;
+        this.cantidad = cantidad;
+    }
+
     // Getters y setters
     public Long getIdTipoSuscripcion() {
         return idTipoSuscripcion;
