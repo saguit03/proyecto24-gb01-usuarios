@@ -152,8 +152,41 @@ public interface UsersApi {
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<User> postUser(@Parameter(in = ParameterIn.DEFAULT, description = "Add a new user in the database", required=true, schema=@Schema()) @Valid @RequestBody User body
+    ResponseEntity<User> postUser(@Parameter(in = ParameterIn.DEFAULT, description = "Add a new user in the database", required=true, schema=@Schema()) @Valid @RequestBody UserLogIn body
 );
+    // Nuevo método que acepta datos en formato form-urlencoded
+    @PostMapping( value = "/users",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    ResponseEntity<User> postUserForm(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("apellidos") String apellidos,
+            @RequestParam("username") String username,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password);
+/*    @Operation(summary = "Create a new user", description = "Creates a new user using `x-www-form-urlencoded` data.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "User created successfully",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
+    })
+    @PostMapping(consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    ResponseEntity<User> createUserByForm( @Parameter(description = "Form data containing user details", required = true,
+            content = @Content(mediaType = MediaType.APPLICATION_FORM_URLENCODED_VALUE))
+                                           @RequestBody MultiValueMap<String, String> formParams);*/
+
+
+   /* @Operation(summary = "Update an existing user", description = "Updates a user's data by their ID using `x-www-form-urlencoded` data.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User updated successfully",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
+    })
+    @PutMapping(path = "/{id}",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    ResponseEntity<User> updateUserByForm(@Parameter(description = "ID of the user to be updated", required = true)
+                                          @PathVariable("id") Long id,
+                                          @Parameter(description = "Form data containing user details", required = true,
+                                                  content = @Content(mediaType = MediaType.APPLICATION_FORM_URLENCODED_VALUE))
+                                          @RequestBody MultiValueMap<String, String> formParams);*/
 
 
     @Operation(summary = "Actualiza la información del usuario por su id", description = "Actualiza la información del usuario dado su id en el endpoint.", security = {
