@@ -1,6 +1,11 @@
 package es.unex.swagger.api;
 
 
+import es.unex.asee.gb01.contents.Entities.SuscripcionEntity;
+import es.unex.asee.gb01.contents.Entities.UserEntity;
+import es.unex.asee.gb01.contents.Mappers.SuscripcionMapper;
+import es.unex.asee.gb01.contents.repositories.SuscripcionRepository;
+import es.unex.asee.gb01.contents.repositories.UserRepository;
 import es.unex.swagger.model.Suscripcion;
 import es.unex.swagger.model.TipoSuscripcion;
 import es.unex.swagger.model.User;
@@ -16,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +49,10 @@ public class SubscriptionsApiController implements SubscriptionsApi {
 
     private final ObjectMapper objectMapper;
 
+    @Autowired
+    SuscripcionRepository suscripcionRepository;
+    @Autowired
+    UserRepository userRepository;
     private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
@@ -79,13 +89,23 @@ public class SubscriptionsApiController implements SubscriptionsApi {
     }
 
     public ResponseEntity<Suscripcion> postSubscriptionByUser(
-@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Suscripcion body
+@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="User", required=true) String sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Suscripcion body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Suscripcion>(objectMapper.readValue("{\n  \"id-suscripcion\" : 1,\n  \"tipo-suscripcion\" : {\n    \"Cantidad\" : 6.0274563,\n    \"id-tipo-suscripcion\" : 0,\n    \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n  },\n  \"Fecha-alta\" : \"08/10/2022\",\n  \"id-usuario\" : 0,\n  \"Fecha-baja\" : \"08/10/2024\"\n}", Suscripcion.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+                UserEntity user = userRepository.findbyEmail(sessionUserCookie);
+                UserEntity userSubs = userRepository.findById(body.getIdSuscripcion()).orElse(null);
+                SuscripcionEntity suscripcion = SuscripcionMapper.toEntity(body);
+                if(suscripcion.getIdUsuario() != user.getId()){
+                    return new ResponseEntity<Suscripcion>(HttpStatus.BAD_REQUEST);
+                }
+                if(userSubs == null){
+                    return new ResponseEntity<Suscripcion>(HttpStatus.NOT_FOUND);
+                }
+                SuscripcionEntity savedSubs = suscripcionRepository.save(suscripcion);
+                return new ResponseEntity<Suscripcion>( HttpStatus.NOT_IMPLEMENTED);
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Suscripcion>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

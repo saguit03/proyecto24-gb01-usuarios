@@ -106,7 +106,7 @@ public interface SubscriptionsApi {
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Suscripcion> postSubscriptionByUser(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+    ResponseEntity<Suscripcion> postSubscriptionByUser(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="User", required=true) String sessionUserCookie
 , @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Suscripcion body
 );
 

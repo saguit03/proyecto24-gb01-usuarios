@@ -36,11 +36,23 @@ public class TipoSuscripcion   {
   private Float cantidad = null;
 
 
-  public TipoSuscripcion idTipoSuscripcion(Long idTipoSuscripcion) { 
 
-    this.idTipoSuscripcion = idTipoSuscripcion;
-    return this;
+
+  public TipoSuscripcion() {
   }
+
+  public TipoSuscripcion(String nombreTipoSuscripcion, Float cantidad) {
+    this.nombreTipoSuscripcion = nombreTipoSuscripcion;
+    this.cantidad = cantidad;
+  }
+
+  public TipoSuscripcion(Long idTipoSuscripcion, String nombreTipoSuscripcion, Float cantidad) {
+    this.idTipoSuscripcion = idTipoSuscripcion;
+    this.nombreTipoSuscripcion = nombreTipoSuscripcion;
+    this.cantidad = cantidad;
+  }
+
+
 
   /**
    * Get idTipoSuscripcion
@@ -61,11 +73,7 @@ public class TipoSuscripcion   {
     this.idTipoSuscripcion = idTipoSuscripcion;
   }
 
-  public TipoSuscripcion nombreTipoSuscripcion(String nombreTipoSuscripcion) { 
 
-    this.nombreTipoSuscripcion = nombreTipoSuscripcion;
-    return this;
-  }
 
   /**
    * Get nombreTipoSuscripcion
@@ -86,11 +94,6 @@ public class TipoSuscripcion   {
     this.nombreTipoSuscripcion = nombreTipoSuscripcion;
   }
 
-  public TipoSuscripcion cantidad(Float cantidad) { 
-
-    this.cantidad = cantidad;
-    return this;
-  }
 
   /**
    * Get cantidad
