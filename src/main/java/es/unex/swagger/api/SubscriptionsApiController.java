@@ -10,6 +10,7 @@ import es.unex.swagger.model.Suscripcion;
 import es.unex.swagger.model.TipoSuscripcion;
 import es.unex.swagger.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import es.unex.swagger.model.UserLogIn;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -67,11 +68,13 @@ public class SubscriptionsApiController implements SubscriptionsApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> deleteSubscriptionByIdSubscription(@Parameter(in = ParameterIn.PATH, description = "Id de la suscripción.", required=true, schema=@Schema()) @PathVariable("idSubscription") Integer idSubscription
+    public ResponseEntity<Void> deleteSubscriptionByIdSubscription(@Parameter(in = ParameterIn.PATH, description = "Id de la suscripción.", required=true, schema=@Schema()) @PathVariable("idSubscription") Long idSubscription
 ,
-@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
+@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="User", required=true) String sessionUserCookie) {
         String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+
+        suscripcionRepository.deleteById(idSubscription);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     public ResponseEntity<List<Suscripcion>> getAllSubscriptions() {
