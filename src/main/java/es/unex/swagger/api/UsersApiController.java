@@ -26,19 +26,10 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.HttpHeaders;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -137,14 +128,38 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<User> postUser(@Parameter(in = ParameterIn.DEFAULT, description = "Add a new user in the database", required=true, schema=@Schema()) @Valid @RequestBody User body
+/*    public ResponseEntity<User> createUserByForm(@Parameter(description = "Form data containing user details", required = true,
+            content = @Content(mediaType = MediaType.APPLICATION_FORM_URLENCODED_VALUE))
+                                                 @RequestBody MultiValueMap<String, String> formParams) {
+
+        User user = new User();
+        user.setNombre(formParams.getFirst("nombre"));
+        user.setApellidos(formParams.getFirst("apellidos"));
+        user.setUsername(formParams.getFirst("username"));
+        user.setEmail(formParams.getFirst("email"));
+        user.setPassword(formParams.getFirst("password"));
+        user.setFechaAltaReciente(formParams.getFirst("fechaAltaReciente"));
+        user.setFotoPerfil(formParams.getFirst("fotoPerfil"));
+        user.setFechaRegistro(formParams.getFirst("fechaRegistro"));
+        // Agregar asignación de listas y demás campos según sea necesario
+        userRepository.save(UserMapper.toEntity(user));
+        return new ResponseEntity<User>(user,HttpStatus.CREATED);
+    }*/
+
+    public ResponseEntity<User> postUser(@Parameter(in = ParameterIn.DEFAULT, description = "Add a new user in the database", required=true, schema=@Schema()) @Valid @RequestBody UserLogIn body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
+                UserEntity user = userRepository.findByUsername(body.getUsername());
+                if(userRepository.findByUsername(body.getUsername()) != null || userRepository.findByEmail(body.getEmail()) != null) {
+                    return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+                }
+                User aux = new User(body.getUsername(),body.getPassword());
+                aux.setEmail(body.getEmail());
+                UserEntity savedUser = userRepository.save(UserMapper.toEntity(aux));
 
-                userRepository.save(UserMapper.toEntity(body));
-                return new ResponseEntity<User>(body, HttpStatus.CREATED);
+                return new ResponseEntity<User>(UserMapper.toModel(savedUser), HttpStatus.CREATED);
             } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -153,6 +168,49 @@ public class UsersApiController implements UsersApi {
 
         return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);
     }
+
+
+    // Nuevo método que acepta datos en formato form-urlencoded
+    @PostMapping( consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<User> postUserForm(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("apellidos") String apellidos,
+            @RequestParam("username") String username,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password) {
+
+        try {
+            // Validación para evitar duplicados
+            if (userRepository.findByUsername(username) != null || userRepository.findByEmail(email) != null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            // Crear el objeto User desde los parámetros individuales
+            User body = new User();
+            body.setUsername(username);
+            body.setEmail(email);
+            body.setPassword(password);
+            body.setNombre(nombre);
+            body.setApellidos(apellidos);
+
+            // Guardar en la base de datos
+            UserEntity savedUser = userRepository.save(UserMapper.toEntity(body));
+            return new ResponseEntity<>(UserMapper.toModel(savedUser), HttpStatus.CREATED);
+        } catch (Exception e) {
+            log.error("Couldn't serialize response for content type application/x-www-form-urlencoded", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+/*    public ResponseEntity<User> updateUserByForm(@Parameter(description = "ID of the user to be updated", required = true)
+                                                 @PathVariable("id") Long id,
+                                                 @Parameter(description = "Form data containing user details", required = true,
+                                                         content = @Content(mediaType = MediaType.APPLICATION_FORM_URLENCODED_VALUE))
+                                                 @RequestBody MultiValueMap<String, String> formParams) {
+
+        return null;
+    }*/
 
     public ResponseEntity<User> putUserById(@Parameter(in = ParameterIn.PATH, description = "El id del usuario que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idUser") Integer idUser, @Valid @RequestBody User body
 ) {
