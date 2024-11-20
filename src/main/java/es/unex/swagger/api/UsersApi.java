@@ -7,8 +7,6 @@ package es.unex.swagger.api;
 
 
 //import io.swagger.model.ComponentssecuritySchemescookieAuth;
-import es.unex.swagger.model.Language;
-import es.unex.swagger.model.PerfilUsuario;
 import es.unex.swagger.model.Suscripcion;
 import es.unex.swagger.model.TarjetaCredito;
 import es.unex.swagger.model.TipoSuscripcion;
@@ -33,10 +31,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
-
-import es.unex.asee.gb01.contents.Entities.UserEntity;
-
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.CookieValue;
+
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
