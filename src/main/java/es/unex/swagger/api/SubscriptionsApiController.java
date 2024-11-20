@@ -48,6 +48,7 @@ public class SubscriptionsApiController implements SubscriptionsApi {
 
     private static final Logger log = LoggerFactory.getLogger(SubscriptionsApiController.class);
 
+    
     private final ObjectMapper objectMapper;
 
     @Autowired
@@ -97,7 +98,7 @@ public class SubscriptionsApiController implements SubscriptionsApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                UserEntity user = userRepository.findbyEmail(sessionUserCookie);
+                UserEntity user = userRepository.findByEmail(sessionUserCookie);
                 UserEntity userSubs = userRepository.findById(body.getIdSuscripcion()).orElse(null);
                 SuscripcionEntity suscripcion = SuscripcionMapper.toEntity(body);
                 if(suscripcion.getIdUsuario() != user.getId()){

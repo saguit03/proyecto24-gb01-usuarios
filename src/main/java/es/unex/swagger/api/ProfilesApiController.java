@@ -44,7 +44,8 @@ import java.util.Map;
 @RestController
 public class ProfilesApiController implements ProfilesApi {
 
-    private final PerfilUsuarioMapper perfilUsuarioMapper;
+    @Autowired
+    private PerfilUsuarioMapper perfilUsuarioMapper;
 
     private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
 
