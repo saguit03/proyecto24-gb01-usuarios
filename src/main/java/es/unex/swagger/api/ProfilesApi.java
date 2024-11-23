@@ -7,7 +7,7 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.PerfilUsuario;
+import es.unex.swagger.model.UserProfile;
 import es.unex.swagger.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -39,7 +39,7 @@ import java.util.Map;
 @Validated
 public interface ProfilesApi {
 
-    @Operation(summary = "Elimina la información sobre un perfil dado su id.", description = "Elimina toda la información un perfil de un usuario dado el id del usuario y el id del perfil", security = {
+    @Operation(summary = "Elimina la información sobre un profile dado su id.", description = "Elimina toda la información un profile de un user dado el id del user y el id del profile", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -49,84 +49,84 @@ public interface ProfilesApi {
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Usuario o perfil de usuario no encontrado") })
+        @ApiResponse(responseCode = "404", description = "User o profile de user no encontrado") })
     @RequestMapping(value = "/profiles/{idProfile}",
         method = RequestMethod.DELETE)
-    ResponseEntity<PerfilUsuario> deleteUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    ResponseEntity<UserProfile> deleteUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del profile de user que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve todos los perfiles del usuario dada su id.", description = "Devuelve todos los perfiles del usuario.", security = {
+    @Operation(summary = "Devuelve todos los profilees del user dada su id.", description = "Devuelve todos los profilees del user.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "user-profile" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PerfilUsuario.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserProfile.class)))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Perfil no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Profile no encontrado") })
     @RequestMapping(value = "/profiles",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<PerfilUsuario>> getAllUserProfileById(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+    ResponseEntity<List<UserProfile>> getAllUserProfileById(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la información sobre un perfil dado su id.", description = "Devuelve la información sobre un perfil de un usuario dado el ide del usuario y el id del perfil", tags={ "user-profile" })
+    @Operation(summary = "Devuelve la información sobre un profile dado su id.", description = "Devuelve la información sobre un profile de un user dado el ide del user y el id del profile", tags={ "user-profile" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PerfilUsuario.class))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserProfile.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Perfil no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Profile no encontrado") })
     @RequestMapping(value = "/profiles/{idProfile}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.GET)
-    ResponseEntity<PerfilUsuario> getUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    ResponseEntity<UserProfile> getUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del profile de user que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Añade un nuevo perfil de usuario", description = "Añade un nuevo perfil a un usuario, facilitando la información en el body de la petición.", security = {
+    @Operation(summary = "Añade un nuevo profile de user", description = "Añade un nuevo profile a un user, facilitando la información en el body de la petición.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "user-profile" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PerfilUsuario.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserProfile.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Perfil no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Profile no encontrado") })
     @RequestMapping(value = "/profiles",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<PerfilUsuario> postUserProfile(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody PerfilUsuario body
+    ResponseEntity<UserProfile> postUserProfile(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserProfile body
 );
 
 
-    @Operation(summary = " Actualiza la información sobre un perfil dado su id.", description = "Actualiza toda la información un perfil de un usuario dado su id", security = {
+    @Operation(summary = " Actualiza la información sobre un profile dado su id.", description = "Actualiza toda la información un profile de un user dado su id", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "user-profile" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = PerfilUsuario.class))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserProfile.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Perfil no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Profile no encontrado") })
     @RequestMapping(value = "/profiles/{idProfile}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<PerfilUsuario> putUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    ResponseEntity<UserProfile> putUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del profile de user que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody PerfilUsuario body
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserProfile body
 );
 
 }

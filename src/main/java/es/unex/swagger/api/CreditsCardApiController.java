@@ -1,7 +1,7 @@
 // package es.unex.swagger.api;
 
 
-// import es.unex.swagger.model.TarjetaCredito;
+// import es.unex.swagger.model.CreditCard;
 // import es.unex.swagger.model.User;
 // import com.fasterxml.jackson.databind.ObjectMapper;
 // import io.swagger.v3.oas.annotations.Operation;
@@ -51,69 +51,69 @@
 //     }
 
 //     public ResponseEntity<Void> addCreditCard(
-// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody TarjetaCredito body
+// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody CreditCard body
 // ) {
 //         String accept = request.getHeader("Accept");
 //         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<TarjetaCredito> deleteCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
+//     public ResponseEntity<CreditCard> deleteCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<TarjetaCredito>(objectMapper.readValue("{\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Banco\" : \"Santander\",\n  \"id-usuario\" : 1\n}", TarjetaCredito.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<CreditCard>(objectMapper.readValue("{\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Bank\" : \"Santander\",\n  \"idUser\" : 1\n}", CreditCard.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<TarjetaCredito>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<CreditCard>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<TarjetaCredito>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<CreditCard>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<TarjetaCredito> getCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
+//     public ResponseEntity<CreditCard> getCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<TarjetaCredito>(objectMapper.readValue("{\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Banco\" : \"Santander\",\n  \"id-usuario\" : 1\n}", TarjetaCredito.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<CreditCard>(objectMapper.readValue("{\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Bank\" : \"Santander\",\n  \"idUser\" : 1\n}", CreditCard.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<TarjetaCredito>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<CreditCard>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<TarjetaCredito>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<CreditCard>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<List<TarjetaCredito>> getMyCreditsCard() {
+//     public ResponseEntity<List<CreditCard>> getMyCreditsCard() {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<List<TarjetaCredito>>(objectMapper.readValue("[ {\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Banco\" : \"Santander\",\n  \"id-usuario\" : 1\n}, {\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Banco\" : \"Santander\",\n  \"id-usuario\" : 1\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<List<CreditCard>>(objectMapper.readValue("[ {\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Bank\" : \"Santander\",\n  \"idUser\" : 1\n}, {\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Bank\" : \"Santander\",\n  \"idUser\" : 1\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<List<TarjetaCredito>>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<List<CreditCard>>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<List<TarjetaCredito>>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<List<CreditCard>>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<TarjetaCredito> updateCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
+//     public ResponseEntity<CreditCard> updateCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<TarjetaCredito>(objectMapper.readValue("{\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Banco\" : \"Santander\",\n  \"id-usuario\" : 1\n}", TarjetaCredito.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<CreditCard>(objectMapper.readValue("{\n  \"CVC\" : \"123\",\n  \"IBAN\" : \"ES11111111111111111\",\n  \"Bank\" : \"Santander\",\n  \"idUser\" : 1\n}", CreditCard.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<TarjetaCredito>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<CreditCard>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<TarjetaCredito>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<CreditCard>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
 // }

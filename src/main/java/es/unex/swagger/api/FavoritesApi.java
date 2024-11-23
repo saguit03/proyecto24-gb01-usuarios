@@ -6,7 +6,7 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.Favoritos;
+import es.unex.swagger.model.Favorites;
 import es.unex.swagger.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -38,69 +38,69 @@ import java.util.Map;
 @Validated
 public interface FavoritesApi {
 
-    @Operation(summary = "Elimina un contenido de la lista de favoritos del usuario, obteniendolo mediante la cookie de la sesión.", description = "Elimina un contenido de la lista de favoritos del usuario", security = {
+    @Operation(summary = "Elimina un content de la lista de favorites del user, obteniendolo mediante la cookie de la sesión.", description = "Elimina un content de la lista de favorites del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "favorites" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favoritos.class))),
+        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/favorites/{idContent}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<Favoritos> deleteFavoritesByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    ResponseEntity<Favorites> deleteFavoritesByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la información de un contenido de la lista de favoritos del usuario, obteniendolo mediante la cookie de la sesión, y usando el id establecido en el path del contenido a buscar en la lista.", description = "Devuelve la información de un contenido de la lista de favoritos del usuario, dado el id del contenido en el path", security = {
+    @Operation(summary = "Devuelve la información de un content de la lista de favorites del user, obteniendolo mediante la cookie de la sesión, y usando el id establecido en el path del content a buscar en la lista.", description = "Devuelve la información de un content de la lista de favorites del user, dado el id del content en el path", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "favorites" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Favoritos.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Favorites.class)))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/favorites/{idContent}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Favoritos>> getFavoritesByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    ResponseEntity<List<Favorites>> getFavoritesByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la lista de favoritos del usuario, obteniendolo mediante la cookie de la sesión.", description = "Devuelve la lista de favoritos del usuario", security = {
+    @Operation(summary = "Devuelve la lista de favorites del user, obteniendolo mediante la cookie de la sesión.", description = "Devuelve la lista de favorites del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "favorites" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Favoritos.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Favorites.class)))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/favorites",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Favoritos>> getFavoritesByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+    ResponseEntity<List<Favorites>> getFavoritesByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Añade un nuevo contenido a la lista de favoritos del usuario, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo contenido a la lista de favoritos del usuario, dado el id del contenido en el path", security = {
+    @Operation(summary = "Añade un nuevo content a la lista de favorites del user, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo content a la lista de favorites del user, dado el id del content en el path", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "favorites" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favoritos.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -108,18 +108,18 @@ public interface FavoritesApi {
     @RequestMapping(value = "/favorites/{idContent}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Favoritos> postFavoritesByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    ResponseEntity<Favorites> postFavoritesByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Añade un nuevo contenido a la lista de favoritos del usuario, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo contenido a la lista de favoritos del usuario", security = {
+    @Operation(summary = "Añade un nuevo content a la lista de favorites del user, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo content a la lista de favorites del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "favorites" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favoritos.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Favorites.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -128,8 +128,8 @@ public interface FavoritesApi {
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Favoritos> postFavoritesByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Favoritos body
+    ResponseEntity<Favorites> postFavoritesByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Favorites body
 );
 
 }

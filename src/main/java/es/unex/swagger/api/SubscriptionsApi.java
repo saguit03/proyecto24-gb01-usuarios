@@ -6,8 +6,8 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.Suscripcion;
-import es.unex.swagger.model.TipoSuscripcion;
+import es.unex.swagger.model.Subscription;
+import es.unex.swagger.model.SubscriptionType;
 import es.unex.swagger.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -56,7 +56,7 @@ public interface SubscriptionsApi {
 );
 
 
-    @Operation(summary = "Elimina la suscripción de un usuario, dando la id de la suscripción", description = "Elimina la suscripción de un usuario, dando la id de la suscripción.", security = {
+    @Operation(summary = "Elimina la suscripción de un user, dando la id de la suscripción", description = "Elimina la suscripción de un user, dando la id de la suscripción.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -74,50 +74,50 @@ public interface SubscriptionsApi {
 );
 
 
-    @Operation(summary = "Devuelve todas las suscripciones realizadas por todos usuarios.", description = "Devuelve todas las suscripciones realizadas por todos usuarios.", security = {
+    @Operation(summary = "Devuelve todas las subscriptiones realizadas por todos users.", description = "Devuelve todas las subscriptiones realizadas por todos users.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscription" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Suscripcion.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Subscription.class)))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Suscripciones no encontradas") })
+        @ApiResponse(responseCode = "404", description = "Subscriptiones no encontradas") })
     @RequestMapping(value = "/subscriptions",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Suscripcion>> getAllSubscriptions();
+    ResponseEntity<List<Subscription>> getAllSubscriptions();
 
 
-    @Operation(summary = "Añade una nueva suscripción a la base de datos.", description = "Añade una nueva suscripción a la base de datos, realizado por un usuario, en el que el id vendrá en el cuerpo de la petición o se cogerá de la cookie de la sesión.", security = {
+    @Operation(summary = "Añade una nueva suscripción a la base de datos.", description = "Añade una nueva suscripción a la base de datos, realizado por un user, en el que el id vendrá en el cuerpo de la petición o se cogerá de la cookie de la sesión.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscription" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Suscripcion.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Suscripcion no encontradas") })
+        @ApiResponse(responseCode = "404", description = "Subscription no encontradas") })
     @RequestMapping(value = "/subscriptions",
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Suscripcion> postSubscriptionByUser(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="User", required=true) String sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Suscripcion body
+    ResponseEntity<Subscription> postSubscriptionByUser(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="User", required=true) String sessionUserCookie
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Subscription body
 );
 
 
-    @Operation(summary = "Actualiza la suscripción de un usuario, dando la id de la suscripción", description = "Actualiza la suscripción de un usuario, dando la id de la suscripción.", security = {
+    @Operation(summary = "Actualiza la suscripción de un user, dando la id de la suscripción", description = "Actualiza la suscripción de un user, dando la id de la suscripción.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscription" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Suscripcion.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -126,9 +126,9 @@ public interface SubscriptionsApi {
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<Suscripcion> updateSubscriptionByIdSubscription(@Parameter(in = ParameterIn.PATH, description = "Id de la suscripción.", required=true, schema=@Schema()) @PathVariable("idSubscription") Integer idSubscription
+    ResponseEntity<Subscription> updateSubscriptionByIdSubscription(@Parameter(in = ParameterIn.PATH, description = "Id de la suscripción.", required=true, schema=@Schema()) @PathVariable("idSubscription") Integer idSubscription
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Suscripcion body
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Subscription body
 );
 
 }

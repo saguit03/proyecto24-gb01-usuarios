@@ -49,7 +49,7 @@ public class LanguagesApiController implements LanguagesApi {
         this.request = request;
     }
 
-    public ResponseEntity<Language> deleteLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del idioma que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
+    public ResponseEntity<Language> deleteLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del language que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
@@ -78,7 +78,7 @@ public class LanguagesApiController implements LanguagesApi {
         return new ResponseEntity<List<Language>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Language> getLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del idioma que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
+    public ResponseEntity<Language> getLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del language que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
@@ -108,7 +108,7 @@ public class LanguagesApiController implements LanguagesApi {
         return new ResponseEntity<Language>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Language> putLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del idioma que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
+    public ResponseEntity<Language> putLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del language que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {

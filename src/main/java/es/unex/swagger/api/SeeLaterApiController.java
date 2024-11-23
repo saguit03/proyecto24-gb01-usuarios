@@ -2,7 +2,7 @@ package es.unex.swagger.api;
 
 
 import es.unex.swagger.model.User;
-import es.unex.swagger.model.VerMasTarde;
+import es.unex.swagger.model.WatchLater;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -50,83 +50,83 @@ public class SeeLaterApiController implements SeeLaterApi {
         this.request = request;
     }
 
-    public ResponseEntity<VerMasTarde> deleteSeeLaterContentByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    public ResponseEntity<WatchLater> deleteSeeLaterContentByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<VerMasTarde>(objectMapper.readValue("{\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}", VerMasTarde.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<WatchLater>(objectMapper.readValue("{\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}", WatchLater.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<VerMasTarde>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<WatchLater>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<VerMasTarde>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<WatchLater>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<VerMasTarde>> getSeeLaterContentByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    public ResponseEntity<List<WatchLater>> getSeeLaterContentByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<VerMasTarde>>(objectMapper.readValue("[ {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}, {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<WatchLater>>(objectMapper.readValue("[ {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}, {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<VerMasTarde>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<WatchLater>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<VerMasTarde>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<WatchLater>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<VerMasTarde>> getSeeLaterListByUserCookie(
+    public ResponseEntity<List<WatchLater>> getSeeLaterListByUserCookie(
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<VerMasTarde>>(objectMapper.readValue("[ {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}, {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<WatchLater>>(objectMapper.readValue("[ {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}, {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<VerMasTarde>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<WatchLater>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<VerMasTarde>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<WatchLater>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<VerMasTarde> postSeeLaterContentByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    public ResponseEntity<WatchLater> postSeeLaterContentByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<VerMasTarde>(objectMapper.readValue("{\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}", VerMasTarde.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<WatchLater>(objectMapper.readValue("{\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}", WatchLater.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<VerMasTarde>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<WatchLater>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<VerMasTarde>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<WatchLater>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<VerMasTarde> postSeeLaterContentByUserCookie(
-@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody VerMasTarde body
+    public ResponseEntity<WatchLater> postSeeLaterContentByUserCookie(
+@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody WatchLater body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<VerMasTarde>(objectMapper.readValue("{\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}", VerMasTarde.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<WatchLater>(objectMapper.readValue("{\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}", WatchLater.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<VerMasTarde>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<WatchLater>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<VerMasTarde>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<WatchLater>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

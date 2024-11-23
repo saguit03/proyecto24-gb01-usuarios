@@ -1,19 +1,17 @@
-package es.unex.asee.gb01.contents.Entities;
+package es.unex.asee.gb01.contents.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "language")
+@Table(name = "languages")
 public class LanguageEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue
+    private Long idLanguage;
 
-    @NotNull
+    
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -21,18 +19,18 @@ public class LanguageEntity {
     public LanguageEntity() {}
 
     // Constructor con argumentos
-    public LanguageEntity(Long id, String name) {
-        this.id = id;
+    public LanguageEntity(Long idLanguage, String name) {
+        this.idLanguage = idLanguage;
         this.name = name;
     }
 
     // Getters y Setters
-    public Long getId() {
-        return id;
+    public Long getIdLanguage() {
+        return idLanguage;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdLanguage(Long idLanguage) {
+        this.idLanguage = idLanguage;
     }
 
     public String getName() {
@@ -43,27 +41,26 @@ public class LanguageEntity {
         this.name = name;
     }
 
-    // Métodos equals y hashCode
-    // @Override
-    // public boolean equals(Object o) {
-    //     if (this == o) return true;
-    //     if (o == null || getClass() != o.getClass()) return false;
-    //     LanguageEntity that = (LanguageEntity) o;
-    //     return Objects.equals(id, that.id) && Objects.equals(name, that.name);
-    // }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LanguageEntity that = (LanguageEntity) o;
+        return Objects.equals(idLanguage, that.idLanguage) && Objects.equals(name, that.name);
+    }
 
-    // @Override
-    // public int hashCode() {
-    //     return Objects.hash(id, name);
-    // }
+    @Override
+    public int hashCode() {
+        return Objects.hash(idLanguage, name);
+    }
 
-    // // Método toString
-    // @Override
-    // public String toString() {
-    //     return "LanguageEntity{" +
-    //             "id=" + id +
-    //             ", name='" + name + '\'' +
-    //             '}';
-    // }
+    // Método toString
+    @Override
+    public String toString() {
+        return "LanguageEntity{" +
+                "idLanguage=" + idLanguage +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
 

@@ -7,7 +7,7 @@ package es.unex.swagger.api;
 
 
 import es.unex.swagger.model.User;
-import es.unex.swagger.model.VerMasTarde;
+import es.unex.swagger.model.WatchLater;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -38,90 +38,90 @@ import java.util.Map;
 @Validated
 public interface SeeLaterApi {
 
-    @Operation(summary = "Elimina un contenido de la lista de favoritos del \"Ver más tarde\", obteniendolo mediante la cookie de la sesión.", description = "Elimina un contenido de la lista de \"Ver más tarde\" del usuario", security = {
+    @Operation(summary = "Elimina un content de la lista de favorites del \"Ver más tarde\", obteniendolo mediante la cookie de la sesión.", description = "Elimina un content de la lista de \"Ver más tarde\" del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "seeLater" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = VerMasTarde.class))),
+        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = WatchLater.class))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/seeLater/{idContent}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<VerMasTarde> deleteSeeLaterContentByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    ResponseEntity<WatchLater> deleteSeeLaterContentByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la información de un contenido de la lista de Ver-mas-tarde del usuario, obteniendolo mediante la cookie de la sesión, y usando el id establecido en el path del contenido a buscar en la lista.", description = "Devuelve la información de un contenido de la lista de Ver-mas-tarde del usuario, dado el id del contenido en el path", security = {
+    @Operation(summary = "Devuelve la información de un content de la lista de Ver-más-tarde del user, obteniendolo mediante la cookie de la sesión, y usando el id establecido en el path del content a buscar en la lista.", description = "Devuelve la información de un content de la lista de Ver-más-tarde del user, dado el id del content en el path", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "seeLater" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = VerMasTarde.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = WatchLater.class)))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/seeLater/{idContent}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<VerMasTarde>> getSeeLaterContentByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    ResponseEntity<List<WatchLater>> getSeeLaterContentByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la lista de Ver-mas-tarde del usuario, obteniendolo mediante la cookie de la sesión.", description = "Devuelve la lista de Ver-mas-tarde del usuario", security = {
+    @Operation(summary = "Devuelve la lista de Ver-más-tarde del user, obteniendolo mediante la cookie de la sesión.", description = "Devuelve la lista de Ver-más-tarde del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "seeLater" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = VerMasTarde.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = WatchLater.class)))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/seeLater",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<VerMasTarde>> getSeeLaterListByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+    ResponseEntity<List<WatchLater>> getSeeLaterListByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Añade un nuevo contenido a la lista de Ver-mas-tarde del usuario, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo contenido a la lista de Ver-mas-tarde del usuario, dado el id del contenido a añadir en el path.", security = {
+    @Operation(summary = "Añade un nuevo content a la lista de Ver-más-tarde del user, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo content a la lista de Ver-más-tarde del user, dado el id del content a añadir en el path.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "seeLater" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = VerMasTarde.class))) })
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = WatchLater.class))) })
     @RequestMapping(value = "/seeLater/{idContent}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.POST)
-    ResponseEntity<VerMasTarde> postSeeLaterContentByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    ResponseEntity<WatchLater> postSeeLaterContentByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Añade un nuevo contenido a la lista de Ver-mas-tarde del usuario, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo contenido a la lista de Ver-mas-tarde del usuario", security = {
+    @Operation(summary = "Añade un nuevo content a la lista de Ver-más-tarde del user, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo content a la lista de Ver-más-tarde del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "seeLater" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = VerMasTarde.class))) })
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = WatchLater.class))) })
     @RequestMapping(value = "/seeLater",
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<VerMasTarde> postSeeLaterContentByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody VerMasTarde body
+    ResponseEntity<WatchLater> postSeeLaterContentByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody WatchLater body
 );
 
 }

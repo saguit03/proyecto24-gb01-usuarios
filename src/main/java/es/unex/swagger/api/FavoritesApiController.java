@@ -1,7 +1,7 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.Favoritos;
+import es.unex.swagger.model.Favorites;
 import es.unex.swagger.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,83 +51,83 @@ public class FavoritesApiController implements FavoritesApi {
         this.request = request;
     }
 
-    public ResponseEntity<Favoritos> deleteFavoritesByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    public ResponseEntity<Favorites> deleteFavoritesByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Favoritos>(objectMapper.readValue("{\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}", Favoritos.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Favorites>(objectMapper.readValue("{\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}", Favorites.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Favoritos>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Favorites>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<Favoritos>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<Favorites>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Favoritos>> getFavoritesByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    public ResponseEntity<List<Favorites>> getFavoritesByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Favoritos>>(objectMapper.readValue("[ {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}, {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Favorites>>(objectMapper.readValue("[ {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}, {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Favoritos>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<Favorites>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<Favorites>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Favoritos>> getFavoritesByUserCookie(
+    public ResponseEntity<List<Favorites>> getFavoritesByUserCookie(
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<Favoritos>>(objectMapper.readValue("[ {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}, {\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<Favorites>>(objectMapper.readValue("[ {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}, {\n  \"idContent\" : 6,\n  \"idUser\" : 0\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Favoritos>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<Favorites>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<Favoritos>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<Favorites>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Favoritos> postFavoritesByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
+    public ResponseEntity<Favorites> postFavoritesByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idContent") Integer idContent
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Favoritos>(objectMapper.readValue("{\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}", Favoritos.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Favorites>(objectMapper.readValue("{\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}", Favorites.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Favoritos>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Favorites>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<Favoritos>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<Favorites>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Favoritos> postFavoritesByUserCookie(
-@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Favoritos body
+    public ResponseEntity<Favorites> postFavoritesByUserCookie(
+@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Favorites body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<Favoritos>(objectMapper.readValue("{\n  \"id-contenido\" : 6,\n  \"id-user\" : 0\n}", Favoritos.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<Favorites>(objectMapper.readValue("{\n  \"idContent\" : 6,\n  \"idUser\" : 0\n}", Favorites.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Favoritos>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Favorites>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<Favoritos>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<Favorites>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }
