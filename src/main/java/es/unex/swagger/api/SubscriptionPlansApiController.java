@@ -1,7 +1,7 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.TipoSuscripcion;
+import es.unex.swagger.model.SubscriptionType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -49,79 +49,79 @@ public class SubscriptionPlansApiController implements SubscriptionPlansApi {
         this.request = request;
     }
 
-    public ResponseEntity<TipoSuscripcion> deleteSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
+    public ResponseEntity<SubscriptionType> deleteSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<TipoSuscripcion>(objectMapper.readValue("{\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n}", TipoSuscripcion.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<SubscriptionType>(objectMapper.readValue("{\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n}", SubscriptionType.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<TipoSuscripcion>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<SubscriptionType>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<TipoSuscripcion>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<SubscriptionType>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<TipoSuscripcion>> getAllSubscriptionPlans() {
+    public ResponseEntity<List<SubscriptionType>> getAllSubscriptionPlans() {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<TipoSuscripcion>>(objectMapper.readValue("[ {\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n}, {\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<SubscriptionType>>(objectMapper.readValue("[ {\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n}, {\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<TipoSuscripcion>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<SubscriptionType>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<TipoSuscripcion>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<SubscriptionType>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<TipoSuscripcion> getSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
+    public ResponseEntity<SubscriptionType> getSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<TipoSuscripcion>(objectMapper.readValue("{\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n}", TipoSuscripcion.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<SubscriptionType>(objectMapper.readValue("{\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n}", SubscriptionType.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<TipoSuscripcion>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<SubscriptionType>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<TipoSuscripcion>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<SubscriptionType>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<TipoSuscripcion>> postListSubscriptionPlans(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody TipoSuscripcion body
+    public ResponseEntity<List<SubscriptionType>> postListSubscriptionPlans(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SubscriptionType body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<TipoSuscripcion>>(objectMapper.readValue("[ {\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n}, {\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<SubscriptionType>>(objectMapper.readValue("[ {\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n}, {\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<TipoSuscripcion>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<SubscriptionType>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<TipoSuscripcion>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<SubscriptionType>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<TipoSuscripcion> updateSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea acceder.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
-,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody TipoSuscripcion body
+    public ResponseEntity<SubscriptionType> updateSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea acceder.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
+,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SubscriptionType body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<TipoSuscripcion>(objectMapper.readValue("{\n  \"Cantidad\" : 6.0274563,\n  \"id-tipo-suscripcion\" : 0,\n  \"Nombre-tipo-suscripcion\" : \"Nombre-tipo-suscripcion\"\n}", TipoSuscripcion.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<SubscriptionType>(objectMapper.readValue("{\n  \"Quantity\" : 6.0274563,\n  \"id-tipo-subscription\" : 0,\n  \"Name-tipo-subscription\" : \"Name-tipo-subscription\"\n}", SubscriptionType.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<TipoSuscripcion>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<SubscriptionType>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<TipoSuscripcion>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<SubscriptionType>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

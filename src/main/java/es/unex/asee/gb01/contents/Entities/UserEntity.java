@@ -1,36 +1,25 @@
-package es.unex.asee.gb01.contents.Entities;
+package es.unex.asee.gb01.contents.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.Valid;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
-
-// import es.unex.asee.gb01.contents.Entities.Language;
-// import es.unex.asee.gb01.contents.Entities.PerfilUsuario;
-// import es.unex.asee.gb01.contents.Entities.TarjetaCredito;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "users")
 public class UserEntity{
-    @Id
-    @GeneratedValue
-    private Long id = null;
+  @Id
+  @GeneratedValue
+  private Long idUser = null;
 
-  private String nombre = null;
+  private String name = null;
 
-  private String apellidos = null;
+  private String surname = null;
 
   private String username = null;
 
@@ -38,113 +27,113 @@ public class UserEntity{
 
   private String password = null;
 
-  private String fechaAltaReciente = null;
+  private String startDate = null;
 
-  private String fotoPerfil = null;
+  private String profilePicture = null;
 
-  private String fechaRegistro = null;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "perfiles_usuario")
-  private List<PerfilUsuarioEntity> perfilesUsuario = null;
+  private String registerDate = null;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "credits_cards")
-  private List<TarjetaCreditoEntity> tarjetasDeCredito = null;
+    @JoinColumn(name = "userprofiles")
+  private List<UserProfileEntity> userProfiles = null;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "creditcards")
+  private List<CreditCardEntity> creditCards = null;
 
 @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "language_user")
-  private LanguageEntity idioma = null;
+    @JoinColumn(name = "userlanguage")
+  private LanguageEntity language = null;
 
   public UserEntity( ){
-    // this.nombre = nombre;
-    // this.apellidos = apellidos;
+    // this.name = name;
+    // this.surname = surname;
     // this.username= username;
     // this.email = email;
     // this.password = password;
     
   }
-  public UserEntity( String nombre, String apellidos, String username, String email, String password){
-    this.nombre = nombre;
-    this.apellidos = apellidos;
+  public UserEntity( String name, String surname, String username, String email, String password){
+    this.name = name;
+    this.surname = surname;
     this.username= username;
     this.email = email;
     this.password = password;
     
   }
   
-    public String getFechaAltaReciente() {
-      return fechaAltaReciente;
+    public String getStartDate() {
+      return startDate;
     }
 
-    public void setFechaAltaReciente(String fechaAltaReciente) {
-      this.fechaAltaReciente = fechaAltaReciente;
+    public void setStartDate(String startDate) {
+      this.startDate = startDate;
     }
 
-    public String getFotoPerfil() {
-      return fotoPerfil;
+    public String getProfilePicture() {
+      return profilePicture;
     }
 
-    public void setFotoPerfil(String fotoPerfil) {
-      this.fotoPerfil = fotoPerfil;
+    public void setProfilePicture(String profilePicture) {
+      this.profilePicture = profilePicture;
     }
 
-    public String getFechaRegistro() {
-      return fechaRegistro;
+    public String getRegisterDate() {
+      return registerDate;
     }
 
-    public void setFechaRegistro(String fechaRegistro) {
-      this.fechaRegistro = fechaRegistro;
+    public void setRegisterDate(String registerDate) {
+      this.registerDate = registerDate;
     }
 
-    public List<PerfilUsuarioEntity> getPerfilesUsuario() {
-      return perfilesUsuario;
+    public List<UserProfileEntity> getUserProfiles() {
+      return userProfiles;
     }
 
-    public void setPerfilesUsuario(List<PerfilUsuarioEntity> perfilesUsuario) {
-      this.perfilesUsuario = perfilesUsuario;
+    public void setUserProfiles(List<UserProfileEntity> userProfiles) {
+      this.userProfiles = userProfiles;
     }
 
-    public List<TarjetaCreditoEntity> getTarjetasDeCredito() {
-      return tarjetasDeCredito;
+    public List<CreditCardEntity> getCreditCards() {
+      return creditCards;
     }
 
-    public void setTarjetasDeCredito(List<TarjetaCreditoEntity> tarjetasDeCredito) {
-      this.tarjetasDeCredito = tarjetasDeCredito;
+    public void setCreditCards(List<CreditCardEntity> creditCards) {
+      this.creditCards = creditCards;
     }
 
-    public LanguageEntity getIdioma() {
-      return idioma;
+    public LanguageEntity getLanguage() {
+      return language;
     }
 
-    public void setIdioma(LanguageEntity idioma) {
-      this.idioma = idioma;
+    public void setLanguage(LanguageEntity language) {
+      this.language = language;
     }
 
 
 
-  public Long getId() {
-    return id;
+  public Long getIdUser() {
+    return idUser;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setIdUser(Long idUser) {
+    this.idUser = idUser;
   }
 
-  public String getNombre() {
-    return nombre;
+  public String getName() {
+    return name;
   }
 
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getApellidos() {
-    return apellidos;
+  public String getSurname() {
+    return surname;
   }
 
-  public void setApellidos(String apellidos) {
-    this.apellidos = apellidos;
+  public void setSurname(String surname) {
+    this.surname = surname;
   }
 
   public String getUsername() {

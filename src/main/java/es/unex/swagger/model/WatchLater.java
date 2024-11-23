@@ -1,85 +1,78 @@
 package es.unex.swagger.model;
 
-
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
-import org.openapitools.jackson.nullable.JsonNullable;
 import es.unex.swagger.configuration.NotUndefined;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Historial
+ * WatchLater
  */
 @Validated
 @NotUndefined
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-18T10:29:32.211856553Z[GMT]")
 
 
-public class Historial   {
-  @JsonProperty("id-user")
+public class WatchLater   {
+  @JsonProperty("idUser")
 
   private Long idUser = null;
 
-  @JsonProperty("id-visualizacion")
+  @JsonProperty("idContent")
 
-  private Long idVisualizacion = null;
+  private Long idContent = null;
 
 
-  public Historial idUser(Long idUser) { 
+  public WatchLater idUser(Long idUser) { 
 
     this.idUser = idUser;
     return this;
   }
 
   /**
-   * Id del usuario al que pertenece esta lista de contenido
+   * Id del user al que pertenece esta lista de content
    * @return idUser
    **/
   
-  @Schema(required = true, description = "Id del usuario al que pertenece esta lista de contenido")
+  @Schema(required = true, description = "Id del user al que pertenece esta lista de content")
   
-  @NotNull
-  public Long getIdUser() {  
+  
+  public Long getidUser() {  
     return idUser;
   }
 
 
 
-  public void setIdUser(Long idUser) { 
+  public void setidUser(Long idUser) { 
 
     this.idUser = idUser;
   }
 
-  public Historial idVisualizacion(Long idVisualizacion) { 
+  public WatchLater idContent(Long idContent) { 
 
-    this.idVisualizacion = idVisualizacion;
+    this.idContent = idContent;
     return this;
   }
 
   /**
-   * Get idVisualizacion
-   * @return idVisualizacion
+   * Get idContent
+   * @return idContent
    **/
   
   @Schema(required = true, description = "")
   
-  @NotNull
-  public Long getIdVisualizacion() {  
-    return idVisualizacion;
+  
+  public Long getidContent() {  
+    return idContent;
   }
 
 
 
-  public void setIdVisualizacion(Long idVisualizacion) { 
+  public void setidContent(Long idContent) { 
 
-    this.idVisualizacion = idVisualizacion;
+    this.idContent = idContent;
   }
 
   @Override
@@ -90,23 +83,23 @@ public class Historial   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Historial historial = (Historial) o;
-    return Objects.equals(this.idUser, historial.idUser) &&
-        Objects.equals(this.idVisualizacion, historial.idVisualizacion);
+    WatchLater watchLater = (WatchLater) o;
+    return Objects.equals(this.idUser, watchLater.idUser) &&
+        Objects.equals(this.idContent, watchLater.idContent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idUser, idVisualizacion);
+    return Objects.hash(idUser, idContent);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Historial {\n");
+    sb.append("class WatchLater {\n");
     
     sb.append("    idUser: ").append(toIndentedString(idUser)).append("\n");
-    sb.append("    idVisualizacion: ").append(toIndentedString(idVisualizacion)).append("\n");
+    sb.append("    idContent: ").append(toIndentedString(idContent)).append("\n");
     sb.append("}");
     return sb.toString();
   }

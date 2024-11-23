@@ -1,95 +1,77 @@
-package es.unex.asee.gb01.contents.Mappers;
+package es.unex.asee.gb01.contents.mappers;
 
+import es.unex.asee.gb01.contents.entities.UserEntity;
+import es.unex.asee.gb01.contents.entities.UserProfileEntity;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserLogIn;
-import es.unex.swagger.model.PerfilUsuario;
-import es.unex.asee.gb01.contents.Entities.UserEntity;
 
-import es.unex.asee.gb01.contents.Entities.PerfilUsuarioEntity;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
 
-    // Convertir de modelo REST a entidad JPA
+    // Convertir de modelo REST a entIdad JPA
     public static UserEntity toEntity(User userModel) {
         if (userModel == null) return null;
 
         UserEntity userEntity = new UserEntity(
-                userModel.getNombre(),
-                userModel.getApellidos(),
+                userModel.getName(),
+                userModel.getSurname(),
                 userModel.getUsername(),
                 userModel.getEmail(),
                 userModel.getPassword()
         );
         
-        userEntity.setId(userModel.getId());
-        userEntity.setFechaAltaReciente(userModel.getFechaAltaReciente());
-        userEntity.setFotoPerfil(userModel.getFotoPerfil());
-        userEntity.setFechaRegistro(userModel.getFechaRegistro());
+        userEntity.setIdUser(userModel.getIdUser());
+        userEntity.setStartDate(userModel.getStartDate());
+        userEntity.setProfilePicture(userModel.getProfilePicture());
+        userEntity.setRegisterDate(userModel.getRegisterDate());
 
-        // Convertir perfiles de usuario
-        if (userModel.getPerfilesUsuario() != null) {
-            List<PerfilUsuarioEntity> lista = new ArrayList<>();
-            for (int i = 0; i < userModel.getPerfilesUsuario().size(); i++) {
-                lista.add(PerfilUsuarioMapper.toEntity(userModel.getPerfilesUsuario().get(i)));
+        // Convertir profilees de user
+        if (userModel.getUserProfiles() != null) {
+            List<UserProfileEntity> lista = new ArrayList<>();
+            for (int i = 0; i < userModel.getUserProfiles().size(); i++) {
+                lista.add(UserProfileMapper.toEntity(userModel.getUserProfiles().get(i)));
             }
         }
 
-        // Convertir tarjetas de crédito
-        if (userModel.getTarjetasDeCredito() != null) {
-            // userEntity.setTarjetasDeCredito(
-            //     userModel.getTarjetasDeCredito().stream()
-            //     .map(TarjetaCreditoMapper::toEntity)
+        // Convertir cards de crédito
+        if (userModel.getCreditCards() != null) {
+            // userEntity.setCreditCards(
+            //     userModel.getCreditCards().stream()
+            //     .map(CreditCardMapper::toEntity)
             //     .collect(Collectors.toList())
             // );
         }
 
-        // Convertir idioma
-        if (userModel.getIdioma() != null) {
-            userEntity.setIdioma(LanguageMapper.toEntity(userModel.getIdioma()));
+        // Convertir language
+        if (userModel.getLanguage() != null) {
+            userEntity.setLanguage(LanguageMapper.toEntity(userModel.getLanguage()));
         }
 
         return userEntity;
     }
 
-    // Convertir de entidad JPA a modelo REST
+    // Convertir de entIdad JPA a modelo REST
     public static User toModel(UserEntity userEntity) {
         if (userEntity == null) return null;
 
         User userModel = new User();
-        userModel.setId(userEntity.getId());
-        userModel.setNombre(userEntity.getNombre());
-        userModel.setApellidos(userEntity.getApellidos());
+        userModel.setIdUser(userEntity.getIdUser());
+        userModel.setName(userEntity.getName());
+        userModel.setSurname(userEntity.getSurname());
         userModel.setUsername(userEntity.getUsername());
         userModel.setEmail(userEntity.getEmail());
         userModel.setPassword(userEntity.getPassword());
-        userModel.setFechaAltaReciente(userEntity.getFechaAltaReciente());
-        userModel.setFotoPerfil(userEntity.getFotoPerfil());
-        userModel.setFechaRegistro(userEntity.getFechaRegistro());
-        
-        // // Convertir perfiles de usuario
-        // if (userEntity.getPerfilesUsuario() != null) {
-        //     userModel.setPerfilesUsuario(
-        //         userEntity.getPerfilesUsuario().stream()
-        //         .map(PerfilUsuarioMapper::toModel(this))
-        //         .collect(Collectors.toList())
-        //     );
-        // }
+        userModel.setStartDate(userEntity.getStartDate());
+        userModel.setProfilePicture(userEntity.getProfilePicture());
+        userModel.setRegisterDate(userEntity.getRegisterDate());
 
-        // // Convertir tarjetas de crédito
-        // if (userEntity.getTarjetasDeCredito() != null) {
-        //     userModel.setTarjetasDeCredito(
-        //         userEntity.getTarjetasDeCredito().stream()
-        //         .map(TarjetaCreditoMapper::toModel)
-        //         .collect(Collectors.toList())
-        //     );
-        // }
-
-        // Convertir idioma
-        if (userEntity.getIdioma() != null) {
-            userModel.setIdioma(LanguageMapper.toModel(userEntity.getIdioma()));
+        // Convertir language
+        if (userEntity.getLanguage() != null) {
+            userModel.setLanguage(LanguageMapper.toModel(userEntity.getLanguage()));
         }
 
         return userModel;
@@ -98,46 +80,22 @@ public class UserMapper {
         if (listUserEntity.size() == 0) return null;
         List<User> listUserModel = new ArrayList<>();
         for (UserEntity userEntity : listUserEntity) {
-            
-        User userModel = new User();
-        userModel.setId(userEntity.getId());
-        userModel.setNombre(userEntity.getNombre());
-        userModel.setApellidos(userEntity.getApellidos());
-        userModel.setUsername(userEntity.getUsername());
-        userModel.setEmail(userEntity.getEmail());
-        userModel.setPassword(userEntity.getPassword());
-        userModel.setFechaAltaReciente(userEntity.getFechaAltaReciente());
-        userModel.setFotoPerfil(userEntity.getFotoPerfil());
-        userModel.setFechaRegistro(userEntity.getFechaRegistro());
-
-        // // Convertir perfiles de usuario
-        // if (userEntity.getPerfilesUsuario() != null) {
-        //     userModel.setPerfilesUsuario(
-        //         userEntity.getPerfilesUsuario().stream()
-        //         .map(PerfilUsuarioMapper::toModel(this))
-        //         .collect(Collectors.toList())
-        //     );
-        // }
-
-        // // Convertir tarjetas de crédito
-        // if (userEntity.getTarjetasDeCredito() != null) {
-        //     userModel.setTarjetasDeCredito(
-        //         userEntity.getTarjetasDeCredito().stream()
-        //         .map(TarjetaCreditoMapper::toModel)
-        //         .collect(Collectors.toList())
-        //     );
-        // }
-
-        // Convertir idioma
-        if (userEntity.getIdioma() != null) {
-            userModel.setIdioma(LanguageMapper.toModel(userEntity.getIdioma()));
+            User userModel = new User();
+            userModel.setIdUser(userEntity.getIdUser());
+            userModel.setName(userEntity.getName());
+            userModel.setSurname(userEntity.getSurname());
+            userModel.setUsername(userEntity.getUsername());
+            userModel.setEmail(userEntity.getEmail());
+            userModel.setPassword(userEntity.getPassword());
+            userModel.setStartDate(userEntity.getStartDate());
+            userModel.setProfilePicture(userEntity.getProfilePicture());
+            userModel.setRegisterDate(userEntity.getRegisterDate());
+            // Convertir language
+            if (userEntity.getLanguage() != null) {
+                userModel.setLanguage(LanguageMapper.toModel(userEntity.getLanguage()));
+            }
+            listUserModel.add(userModel);
         }
-
-
-        listUserModel.add(userModel);
-        }
-
-
 
         return listUserModel;
     }

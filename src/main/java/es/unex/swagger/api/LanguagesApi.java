@@ -37,7 +37,7 @@ import java.util.Map;
 @Validated
 public interface LanguagesApi {
 
-    @Operation(summary = "Elimina el idioma por su id", description = "Elimina el idioma dado su id en el endpoint.", security = {
+    @Operation(summary = "Elimina el language por su id", description = "Elimina el language dado su id en el endpoint.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -47,15 +47,15 @@ public interface LanguagesApi {
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Idioma no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Language no encontrado") })
     @RequestMapping(value = "/languages/{idLanguage}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<Language> deleteLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del idioma que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
+    ResponseEntity<Language> deleteLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del language que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
 );
 
 
-    @Operation(summary = "Devuelve todos los idiomas", description = "Devuelve la lista de todos los idiomas del sistema.", security = {
+    @Operation(summary = "Devuelve todos los languages", description = "Devuelve la lista de todos los languages del sistema.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -72,7 +72,7 @@ public interface LanguagesApi {
     ResponseEntity<List<Language>> getAllLanguages();
 
 
-    @Operation(summary = "Devuelve el idioma por su id", description = "Devuelve toda la información del idioma, dado su id", security = {
+    @Operation(summary = "Devuelve el language por su id", description = "Devuelve toda la información del language, dado su id", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -82,24 +82,24 @@ public interface LanguagesApi {
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Idioma no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Language no encontrado") })
     @RequestMapping(value = "/languages/{idLanguage}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Language> getLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del idioma que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
+    ResponseEntity<Language> getLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del language que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
 );
 
 
-    @Operation(summary = "Añade un nuevo idioma a la base de datos.", description = "Añade un nuevo idioma a la base de datos, recibiendo toda su información en el cuerpo de la petición.", security = {
+    @Operation(summary = "Añade un nuevo language a la base de datos.", description = "Añade un nuevo language a la base de datos, recibiendo toda su información en el cuerpo de la petición.", security = {
         @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "languages" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa, idioma añadido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Language.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa, language añadido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Language.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Idioma no encontrado"),
+        @ApiResponse(responseCode = "404", description = "Language no encontrado"),
         
         @ApiResponse(responseCode = "422", description = "Excepción de validación") })
     @RequestMapping(value = "/languages",
@@ -110,7 +110,7 @@ public interface LanguagesApi {
 );
 
 
-    @Operation(summary = "Actualiza la información del idioma por su id", description = "Actualiza la información del idioma dado su id en el endpoint.", security = {
+    @Operation(summary = "Actualiza la información del language por su id", description = "Actualiza la información del language dado su id en el endpoint.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -120,11 +120,11 @@ public interface LanguagesApi {
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Idioma no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Language no encontrado") })
     @RequestMapping(value = "/languages/{idLanguage}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<Language> putLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del idioma que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
+    ResponseEntity<Language> putLanguageById(@Parameter(in = ParameterIn.PATH, description = "El id del language que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idLanguage") Integer idLanguage
 );
 
 }

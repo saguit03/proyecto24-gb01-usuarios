@@ -6,7 +6,7 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.Historial;
+import es.unex.swagger.model.History;
 import es.unex.swagger.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,109 +21,103 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CookieValue;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Map;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-18T10:29:32.211856553Z[GMT]")
 @Validated
 public interface HistoryApi {
 
-    @Operation(summary = "Elimina un contenido de la lista de historial del usuario, obteniendolo mediante la cookie de la sesión.", description = "Elimina un contenido de la lista de historial del usuario", security = {
+    @Operation(summary = "Elimina un content de la lista de history del user, obteniendolo mediante la cookie de la sesión.", description = "Elimina un content de la lista de history del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "history" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Historial.class))),
+        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = History.class))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/history/{idVisualize}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<Historial> deleteHistoryByIdVisualize(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idVisualize") Integer idVisualize
+    ResponseEntity<History> deleteHistoryByIdVisualize(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idVisualize") Integer idVisualize
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la información de un contenido de la lista de historial del usuario, obteniendolo mediante la cookie de la sesión, y usando el id establecido en el path del contenido a buscar en la lista.", description = "Devuelve la información de un contenido de la lista de historial del usuario, dado el id del contenido en el path", security = {
+    @Operation(summary = "Devuelve la información de un content de la lista de history del user, obteniendolo mediante la cookie de la sesión, y usando el id establecido en el path del content a buscar en la lista.", description = "Devuelve la información de un content de la lista de history del user, dado el id del content en el path", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "history" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Historial.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = History.class)))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/history/{idVisualize}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Historial>> getHistoryByIdContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idVisualize") Integer idVisualize
+    ResponseEntity<List<History>> getHistoryByidContent(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idVisualize") Integer idVisualize
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Devuelve la lista de historial del usuario, obteniendolo mediante la cookie de la sesión.", description = "Devuelve la lista de historial del usuario", security = {
+    @Operation(summary = "Devuelve la lista de history del user, obteniendolo mediante la cookie de la sesión.", description = "Devuelve la lista de history del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "history" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Historial.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = History.class)))),
         
-        @ApiResponse(responseCode = "400", description = "Usuario no encontrado"),
+        @ApiResponse(responseCode = "400", description = "User no encontrado"),
         
         @ApiResponse(responseCode = "404", description = "Valor no soportado") })
     @RequestMapping(value = "/history",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Historial>> getHistoryByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+    ResponseEntity<List<History>> getHistoryByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 );
 
 
-    @Operation(summary = "Añade un nuevo contenido a la lista de historial del usuario, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo contenido a la lista de historial del usuario, dado el id de la visualización", security = {
+    @Operation(summary = "Añade un nuevo content a la lista de history del user, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo content a la lista de history del user, dado el id de la visualización", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "history" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Historial.class))) })
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = History.class))) })
     @RequestMapping(value = "/history/{idVisualize}",
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Historial> postHistoryContentByIdVisualize(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idVisualize") Integer idVisualize
+    ResponseEntity<History> postHistoryContentByIdVisualize(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("idVisualize") Integer idVisualize
 , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Historial body
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody History body
 );
 
 
-    @Operation(summary = "Añade un nuevo contenido a la lista de historial del usuario, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo contenido a la lista de historial del usuario", security = {
+    @Operation(summary = "Añade un nuevo content a la lista de history del user, obteniendolo mediante la cookie de la sesión.", description = "Añade un nuevo content a la lista de history del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "history" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Historial.class))) })
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = History.class))) })
     @RequestMapping(value = "/history",
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Historial> postHistoryContentByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Historial body
+    ResponseEntity<History> postHistoryContentByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody History body
 );
 
 }

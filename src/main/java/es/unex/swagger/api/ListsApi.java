@@ -5,8 +5,8 @@
 //  */
 // package io.swagger.api;
 
-// import io.swagger.model.HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid;
-// import io.swagger.model.ListaContenido;
+// import io.swagger.model.HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid;
+// import io.swagger.model.ListaContent;
 // import io.swagger.model.User;
 // import io.swagger.v3.oas.annotations.Operation;
 // import io.swagger.v3.oas.annotations.Parameter;
@@ -38,7 +38,7 @@
 // @Validated
 // public interface ListsApi {
 
-//     @Operation(summary = "Elimina un contenido de la lista de contenido, dada el id de la lista de contenido.", description = "Elimina un contenido de la lista de contenido, dada el id de la lista de contenido. En el cuerpo, se debe especificar los parámetros necesarios de la Clase \"Contenido\".", security = {
+//     @Operation(summary = "Elimina un content de la lista de content, dada el id de la lista de content.", description = "Elimina un content de la lista de content, dada el id de la lista de content. En el cuerpo, se debe especificar los parámetros necesarios de la Clase \"Content\".", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
@@ -48,22 +48,22 @@
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-//         @ApiResponse(responseCode = "404", description = "Contenido no encontrada") })
+//         @ApiResponse(responseCode = "404", description = "Content no encontrada") })
 //     @RequestMapping(value = "/lists/{idList}/contents/{idContent}",
 //         method = RequestMethod.DELETE)
 //     ResponseEntity<Void> deleteContentByidContent(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-// , @Parameter(in = ParameterIn.PATH, description = "Id de la lista de contenido a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
-// , @Parameter(in = ParameterIn.PATH, description = "Id del contenido en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
+// , @Parameter(in = ParameterIn.PATH, description = "Id de la lista de content a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
+// , @Parameter(in = ParameterIn.PATH, description = "Id del content en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
 // );
 
 
-//     @Operation(summary = "Elimina una lista de contenido al usuario, dada el id de la lista", description = "Elimina una lista de contenidos al usuario que ha iniciado sesión, dada la id de la lista.", security = {
+//     @Operation(summary = "Elimina una lista de content al user, dada el id de la lista", description = "Elimina una lista de contents al user que ha iniciado sesión, dada la id de la lista.", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
 // "read:users"        })    }, tags={ "lists" })
 //     @ApiResponses(value = { 
-//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ListaContenido.class))),
+//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ListaContent.class))),
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -71,12 +71,12 @@
 //     @RequestMapping(value = "/lists/{idList}",
 //         produces = { "application/json", "application/xml" }, 
 //         method = RequestMethod.DELETE)
-//     ResponseEntity<ListaContenido> deleteListById(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+//     ResponseEntity<ListaContent> deleteListById(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 // , @Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // );
 
 
-//     @Operation(summary = "Devuelve el contenido guardado en una lista, dada la id del contenido.", description = "Devuelve la información del contenido guardado en una lista, dada la id del contneido.", security = {
+//     @Operation(summary = "Devuelve el content guardado en una lista, dada la id del content.", description = "Devuelve la información del content guardado en una lista, dada la id del contneido.", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
@@ -86,21 +86,21 @@
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-//         @ApiResponse(responseCode = "404", description = "Lista o contenido no encontrado") })
+//         @ApiResponse(responseCode = "404", description = "Lista o content no encontrado") })
 //     @RequestMapping(value = "/lists/{idList}/contents/{idContent}",
 //         method = RequestMethod.GET)
 //     ResponseEntity<Void> getContentsByidContent(@Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
-// , @Parameter(in = ParameterIn.PATH, description = "Id del contenido en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
+// , @Parameter(in = ParameterIn.PATH, description = "Id del content en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
 // );
 
 
-//     @Operation(summary = "Devuelve todo el contenido guardado en una lista, dada su id.", description = "Devuelve todo el contenido guardado en una lista, dada su id.", security = {
+//     @Operation(summary = "Devuelve todo el content guardado en una lista, dada su id.", description = "Devuelve todo el content guardado en una lista, dada su id.", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
 // "read:users"        })    }, tags={ "lists" })
 //     @ApiResponses(value = { 
-//         @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid.class)))),
+//         @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid.class)))),
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -108,18 +108,18 @@
 //     @RequestMapping(value = "/lists/{idList}/contents",
 //         produces = { "application/json", "application/xml" }, 
 //         method = RequestMethod.GET)
-//     ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid>> getContentsByidList(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+//     ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid>> getContentsByidList(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 // , @Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // );
 
 
-//     @Operation(summary = "Devuelve una lista de contenido al usuario, dada el id de la lista", description = "Devuelve una lista de contenidos al usuario que ha iniciado sesión, dada la id de la lista.", security = {
+//     @Operation(summary = "Devuelve una lista de content al user, dada el id de la lista", description = "Devuelve una lista de contents al user que ha iniciado sesión, dada la id de la lista.", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
 // "read:users"        })    }, tags={ "lists" })
 //     @ApiResponses(value = { 
-//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ListaContenido.class))),
+//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ListaContent.class))),
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -127,18 +127,18 @@
 //     @RequestMapping(value = "/lists/{idList}",
 //         produces = { "application/json", "application/xml" }, 
 //         method = RequestMethod.GET)
-//     ResponseEntity<ListaContenido> getListById(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
+//     ResponseEntity<ListaContent> getListById(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
 // , @Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // );
 
 
-//     @Operation(summary = "Devuelve las listas de contenidos del usuario", description = "Devuelve las listas de contenidos del usuario que ha iniciado sesión.", security = {
+//     @Operation(summary = "Devuelve las listas de contents del user", description = "Devuelve las listas de contents del user que ha iniciado sesión.", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
 // "read:users"        })    }, tags={ "lists" })
 //     @ApiResponses(value = { 
-//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ListaContenido.class)))),
+//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ListaContent.class)))),
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -146,10 +146,10 @@
 //     @RequestMapping(value = "/lists",
 //         produces = { "application/json", "application/xml" }, 
 //         method = RequestMethod.GET)
-//     ResponseEntity<List<ListaContenido>> getLists();
+//     ResponseEntity<List<ListaContent>> getLists();
 
 
-//     @Operation(summary = "Añade un nuevo contenido a la lista de contenido, dada el id de la lista de contenido.", description = "Añade un nuevo contenido a la lista de contenido, dada el id de la lista de contenido. En el cuerpo, se debe especificar los parámetros necesarios de la Clase \"Contenido\".", security = {
+//     @Operation(summary = "Añade un nuevo content a la lista de content, dada el id de la lista de content.", description = "Añade un nuevo content a la lista de content, dada el id de la lista de content. En el cuerpo, se debe especificar los parámetros necesarios de la Clase \"Content\".", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
@@ -164,28 +164,28 @@
 //         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
 //         method = RequestMethod.POST)
 //     ResponseEntity<Void> postContentByidList(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-// , @Parameter(in = ParameterIn.PATH, description = "Id de la lista de contenido a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
+// , @Parameter(in = ParameterIn.PATH, description = "Id de la lista de content a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // );
 
 
-//     @Operation(summary = "Añade una lista de contenido al usuario", description = "Añade una lista de contenidos al usuario que ha iniciado sesión.", security = {
+//     @Operation(summary = "Añade una lista de content al user", description = "Añade una lista de contents al user que ha iniciado sesión.", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
 // "read:users"        })    }, tags={ "lists" })
 //     @ApiResponses(value = { 
-//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ListaContenido.class)))),
+//         @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ListaContent.class)))),
         
 //         @ApiResponse(responseCode = "400", description = "Valor no soportado") })
 //     @RequestMapping(value = "/lists",
 //         produces = { "application/json", "application/xml" }, 
 //         consumes = { "application/json", "application/xml" }, 
 //         method = RequestMethod.POST)
-//     ResponseEntity<List<ListaContenido>> postList(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody ListaContenido body
+//     ResponseEntity<List<ListaContent>> postList(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody ListaContent body
 // );
 
 
-//     @Operation(summary = "Actualiza o añade un nuevo un contenido a la lista de contenido, dada el id de la lista de contenido.", description = "Actualiza o añade un nuevo contenido a la lista de contenido, dada el id de la lista de contenido. En el cuerpo, se debe especificar los parámetros necesarios de la Clase \"Contenido\".", security = {
+//     @Operation(summary = "Actualiza o añade un nuevo un content a la lista de content, dada el id de la lista de content.", description = "Actualiza o añade un nuevo content a la lista de content, dada el id de la lista de content. En el cuerpo, se debe especificar los parámetros necesarios de la Clase \"Content\".", security = {
 //         @SecurityRequirement(name = "cookieAuth"),
 // @SecurityRequirement(name = "medifli_auth", scopes = {
 //             "write:users",
@@ -200,7 +200,7 @@
 //         consumes = { "application/json", "application/xml" }, 
 //         method = RequestMethod.PUT)
 //     ResponseEntity<Void> updateContentByidList(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-// , @Parameter(in = ParameterIn.PATH, description = "Id de la lista de contenido a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
+// , @Parameter(in = ParameterIn.PATH, description = "Id de la lista de content a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // );
 
 // }

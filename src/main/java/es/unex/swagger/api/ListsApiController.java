@@ -1,7 +1,7 @@
 // package io.swagger.api;
 
-// import io.swagger.model.HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid;
-// import io.swagger.model.ListaContenido;
+// import io.swagger.model.HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid;
+// import io.swagger.model.ListaContent;
 // import io.swagger.model.User;
 // import com.fasterxml.jackson.databind.ObjectMapper;
 // import io.swagger.v3.oas.annotations.Operation;
@@ -51,106 +51,106 @@
 //     }
 
 //     public ResponseEntity<Void> deleteContentByidContent(
-// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista de contenido a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
-// ,@Parameter(in = ParameterIn.PATH, description = "Id del contenido en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
+// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista de content a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
+// ,@Parameter(in = ParameterIn.PATH, description = "Id del content en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
 // ) {
 //         String accept = request.getHeader("Accept");
 //         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<ListaContenido> deleteListById(
+//     public ResponseEntity<ListaContent> deleteListById(
 // @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<ListaContenido>(objectMapper.readValue("{\n  \"Nombre-lista\" : \"Mis favoritos\",\n  \"contenidos\" : [ \"{}\", \"{}\" ],\n  \"id-usuario\" : 1,\n  \"id-lista\" : 1\n}", ListaContenido.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<ListaContent>(objectMapper.readValue("{\n  \"Name-lista\" : \"Mis favorites\",\n  \"contents\" : [ \"{}\", \"{}\" ],\n  \"idUser\" : 1,\n  \"id-lista\" : 1\n}", ListaContent.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<ListaContenido>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<ListaContent>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<ListaContenido>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<ListaContent>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
 //     public ResponseEntity<Void> getContentsByidContent(@Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
-// ,@Parameter(in = ParameterIn.PATH, description = "Id del contenido en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
+// ,@Parameter(in = ParameterIn.PATH, description = "Id del content en la lista que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idContent") Long idContent
 // ) {
 //         String accept = request.getHeader("Accept");
 //         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid>> getContentsByidList(
+//     public ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid>> getContentsByidList(
 // @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid>>(objectMapper.readValue("[ \"{}\", \"{}\" ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid>>(objectMapper.readValue("[ \"{}\", \"{}\" ]", List.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid>>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid>>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContenido100swaggerYamlcomponentsschemasMoviepropertiesid>>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<List<HttpsappSwaggerhubComapisdmocinhamedifliContent100swaggerYamlcomponentsschemasMoviepropertiesid>>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<ListaContenido> getListById(
+//     public ResponseEntity<ListaContent> getListById(
 // @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista que se quiere conseguir la información.", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<ListaContenido>(objectMapper.readValue("{\n  \"Nombre-lista\" : \"Mis favoritos\",\n  \"contenidos\" : [ \"{}\", \"{}\" ],\n  \"id-usuario\" : 1,\n  \"id-lista\" : 1\n}", ListaContenido.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<ListaContent>(objectMapper.readValue("{\n  \"Name-lista\" : \"Mis favorites\",\n  \"contents\" : [ \"{}\", \"{}\" ],\n  \"idUser\" : 1,\n  \"id-lista\" : 1\n}", ListaContent.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<ListaContenido>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<ListaContent>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<ListaContenido>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<ListaContent>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<List<ListaContenido>> getLists() {
+//     public ResponseEntity<List<ListaContent>> getLists() {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<List<ListaContenido>>(objectMapper.readValue("[ {\n  \"Nombre-lista\" : \"Mis favoritos\",\n  \"contenidos\" : [ \"{}\", \"{}\" ],\n  \"id-usuario\" : 1,\n  \"id-lista\" : 1\n}, {\n  \"Nombre-lista\" : \"Mis favoritos\",\n  \"contenidos\" : [ \"{}\", \"{}\" ],\n  \"id-usuario\" : 1,\n  \"id-lista\" : 1\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<List<ListaContent>>(objectMapper.readValue("[ {\n  \"Name-lista\" : \"Mis favorites\",\n  \"contents\" : [ \"{}\", \"{}\" ],\n  \"idUser\" : 1,\n  \"id-lista\" : 1\n}, {\n  \"Name-lista\" : \"Mis favorites\",\n  \"contents\" : [ \"{}\", \"{}\" ],\n  \"idUser\" : 1,\n  \"id-lista\" : 1\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<List<ListaContenido>>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<List<ListaContent>>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<List<ListaContenido>>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<List<ListaContent>>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
 //     public ResponseEntity<Void> postContentByidList(
-// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista de contenido a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
+// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista de content a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // ) {
 //         String accept = request.getHeader("Accept");
 //         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
-//     public ResponseEntity<List<ListaContenido>> postList(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody ListaContenido body
+//     public ResponseEntity<List<ListaContent>> postList(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody ListaContent body
 // ) {
 //         String accept = request.getHeader("Accept");
 //         if (accept != null && accept.contains("application/json")) {
 //             try {
-//                 return new ResponseEntity<List<ListaContenido>>(objectMapper.readValue("[ {\n  \"Nombre-lista\" : \"Mis favoritos\",\n  \"contenidos\" : [ \"{}\", \"{}\" ],\n  \"id-usuario\" : 1,\n  \"id-lista\" : 1\n}, {\n  \"Nombre-lista\" : \"Mis favoritos\",\n  \"contenidos\" : [ \"{}\", \"{}\" ],\n  \"id-usuario\" : 1,\n  \"id-lista\" : 1\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+//                 return new ResponseEntity<List<ListaContent>>(objectMapper.readValue("[ {\n  \"Name-lista\" : \"Mis favorites\",\n  \"contents\" : [ \"{}\", \"{}\" ],\n  \"idUser\" : 1,\n  \"id-lista\" : 1\n}, {\n  \"Name-lista\" : \"Mis favorites\",\n  \"contents\" : [ \"{}\", \"{}\" ],\n  \"idUser\" : 1,\n  \"id-lista\" : 1\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
 //             } catch (IOException e) {
 //                 log.error("Couldn't serialize response for content type application/json", e);
-//                 return new ResponseEntity<List<ListaContenido>>(HttpStatus.INTERNAL_SERVER_ERROR);
+//                 return new ResponseEntity<List<ListaContent>>(HttpStatus.INTERNAL_SERVER_ERROR);
 //             }
 //         }
 
-//         return new ResponseEntity<List<ListaContenido>>(HttpStatus.NOT_IMPLEMENTED);
+//         return new ResponseEntity<List<ListaContent>>(HttpStatus.NOT_IMPLEMENTED);
 //     }
 
 //     public ResponseEntity<Void> updateContentByidList(
-// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista de contenido a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
+// @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.PATH, description = "Id de la lista de content a la que se quiere acceder", required=true, schema=@Schema()) @PathVariable("idList") Long idList
 // ) {
 //         String accept = request.getHeader("Accept");
 //         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);

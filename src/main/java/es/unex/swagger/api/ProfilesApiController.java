@@ -1,12 +1,12 @@
 package es.unex.swagger.api;
 
 
-import es.unex.asee.gb01.contents.Entities.PerfilUsuarioEntity;
-import es.unex.asee.gb01.contents.Entities.UserEntity;
-import es.unex.asee.gb01.contents.Mappers.PerfilUsuarioMapper;
-import es.unex.asee.gb01.contents.Mappers.UserMapper;
-import es.unex.asee.gb01.contents.repositories.PerfilUsuarioRepository;
-import es.unex.swagger.model.PerfilUsuario;
+import es.unex.asee.gb01.contents.entities.UserEntity;
+import es.unex.asee.gb01.contents.entities.UserProfileEntity;
+import es.unex.asee.gb01.contents.mappers.UserMapper;
+import es.unex.asee.gb01.contents.mappers.UserProfileMapper;
+import es.unex.asee.gb01.contents.repositories.UserProfileRepository;
+import es.unex.swagger.model.UserProfile;
 import es.unex.swagger.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
@@ -45,7 +45,7 @@ import java.util.Map;
 public class ProfilesApiController implements ProfilesApi {
 
     @Autowired
-    private PerfilUsuarioMapper perfilUsuarioMapper;
+    private UserProfileMapper userProfileMapper;
 
     private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
 
@@ -54,7 +54,7 @@ public class ProfilesApiController implements ProfilesApi {
     private final HttpServletRequest request;
 
     @Autowired
-    private PerfilUsuarioRepository perfilUsuarioRepository;
+    private UserProfileRepository userProfileRepository;
 
     @org.springframework.beans.factory.annotation.Autowired
     public ProfilesApiController(ObjectMapper objectMapper, HttpServletRequest request) {
@@ -62,87 +62,87 @@ public class ProfilesApiController implements ProfilesApi {
         this.request = request;
     }
 
-    public ResponseEntity<PerfilUsuario> deleteUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    public ResponseEntity<UserProfile> deleteUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del profile de user que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
 ,
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                PerfilUsuarioEntity userProfile = perfilUsuarioRepository.findById(idProfile.longValue()).orElse(null);
-                ResponseEntity<PerfilUsuario> respuesta = new ResponseEntity<PerfilUsuario>(PerfilUsuarioMapper.toModel(userProfile) ,HttpStatus.ACCEPTED);
-                perfilUsuarioRepository.deleteById(idProfile.longValue());
+                UserProfileEntity userProfile = userProfileRepository.findById(idProfile.longValue()).orElse(null);
+                ResponseEntity<UserProfile> respuesta = new ResponseEntity<UserProfile>(UserProfileMapper.toModel(userProfile) ,HttpStatus.OK);
+                userProfileRepository.deleteById(idProfile.longValue());
 
                 return respuesta;
             } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<PerfilUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<UserProfile>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-        return new ResponseEntity<PerfilUsuario>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<UserProfile>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<PerfilUsuario>> getAllUserProfileById(
+    public ResponseEntity<List<UserProfile>> getAllUserProfileById(
 @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<PerfilUsuario>>(objectMapper.readValue("[ {\n  \"Pin\" : \"1234\",\n  \"id-usuario\" : 1,\n  \"id-perfil\" : 1,\n  \"Nombre-perfil\" : \"Pablito\"\n}, {\n  \"Pin\" : \"1234\",\n  \"id-usuario\" : 1,\n  \"id-perfil\" : 1,\n  \"Nombre-perfil\" : \"Pablito\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<List<UserProfile>>(objectMapper.readValue("[ {\n  \"Pin\" : \"1234\",\n  \"idUser\" : 1,\n  \"id-profile\" : 1,\n  \"profileName\" : \"Pablito\"\n}, {\n  \"Pin\" : \"1234\",\n  \"idUser\" : 1,\n  \"id-profile\" : 1,\n  \"profileName\" : \"Pablito\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<PerfilUsuario>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<UserProfile>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<List<PerfilUsuario>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<UserProfile>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<PerfilUsuario> getUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    public ResponseEntity<UserProfile> getUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del profile de user que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
         , @Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<PerfilUsuario>(PerfilUsuarioMapper.toModel(perfilUsuarioRepository.findById(idProfile.longValue()).orElse(null)), HttpStatus.ACCEPTED);
+                return new ResponseEntity<UserProfile>(UserProfileMapper.toModel(userProfileRepository.findById(idProfile.longValue()).orElse(null)), HttpStatus.OK);
             } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<PerfilUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<UserProfile>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-        return new ResponseEntity<PerfilUsuario>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<UserProfile>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<PerfilUsuario> postUserProfile(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody PerfilUsuario body
+    public ResponseEntity<UserProfile> postUserProfile(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserProfile body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                perfilUsuarioRepository.save(PerfilUsuarioMapper.toEntity(body));
-                return new ResponseEntity<PerfilUsuario>(body, HttpStatus.CREATED);
+                userProfileRepository.save(UserProfileMapper.toEntity(body));
+                return new ResponseEntity<UserProfile>(body, HttpStatus.CREATED);
             } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<PerfilUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<UserProfile>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<PerfilUsuario>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<UserProfile>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<PerfilUsuario> putUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del perfil de usuario que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
+    public ResponseEntity<UserProfile> putUserProfileById(@Parameter(in = ParameterIn.PATH, description = "El id del profile de user que se desea eliminar.", required=true, schema=@Schema()) @PathVariable("idProfile") Long idProfile
 ,
-@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody PerfilUsuario body
+@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserProfile body
 ) {
     String accept = request.getHeader("Accept");
     if (accept != null && accept.contains("application/json")) {
         try {
-            perfilUsuarioRepository.deleteById(body.getIdPerfil().longValue());
-            perfilUsuarioRepository.save(PerfilUsuarioMapper.toEntity(body));
-            return new ResponseEntity<PerfilUsuario>(body, HttpStatus.ACCEPTED);
+            userProfileRepository.deleteById(body.getIdProfile().longValue());
+            userProfileRepository.save(UserProfileMapper.toEntity(body));
+            return new ResponseEntity<UserProfile>(body, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Couldn't serialize response for content type application/json", e);
-            return new ResponseEntity<PerfilUsuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<UserProfile>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    return new ResponseEntity<PerfilUsuario>(HttpStatus.NOT_IMPLEMENTED);
+    return new ResponseEntity<UserProfile>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

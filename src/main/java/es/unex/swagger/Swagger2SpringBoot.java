@@ -1,9 +1,9 @@
 package es.unex.swagger;
 
 
-import es.unex.asee.gb01.contents.Entities.PerfilUsuarioEntity;
-import es.unex.asee.gb01.contents.Entities.UserEntity;
-import es.unex.asee.gb01.contents.repositories.PerfilUsuarioRepository;
+import es.unex.asee.gb01.contents.entities.UserEntity;
+import es.unex.asee.gb01.contents.entities.UserProfileEntity;
+import es.unex.asee.gb01.contents.repositories.UserProfileRepository;
 import es.unex.asee.gb01.contents.repositories.UserRepository;
 import es.unex.swagger.Swagger2SpringBoot.ExitException;
 import es.unex.swagger.configuration.LocalDateConverter;
@@ -35,10 +35,10 @@ import java.util.List;
 @SpringBootApplication
 @EnableJpaRepositories("es.unex.asee.gb01.contents.repositories")
 @EntityScan(basePackages = "es.unex.asee.gb01.contents.Entities")
-@ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents", "es.unex.asee.gb01.contents.repositories", "es.unex.asee.gb01.contents.Entities"})
+@ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents", "es.unex.asee.gb01.contents.repositories", "es.unex.asee.gb01.contents.entities", "es.unex.asee.gb01.contents.mappers"})
 public class Swagger2SpringBoot implements CommandLineRunner {
     @Autowired UserRepository userRepository;
-    @Autowired PerfilUsuarioRepository perfilUsuarioRepository;
+    @Autowired UserProfileRepository userProfileRepository;
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -76,13 +76,13 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
     @PostConstruct
     public void init() {
-        List<UserEntity> listaUsuarios = new ArrayList<>();
-        List<PerfilUsuarioEntity> listaPerfilUsuarios = new ArrayList<>();
+        List<UserEntity> listaUsers = new ArrayList<>();
+        List<UserProfileEntity> listaUserProfiles = new ArrayList<>();
         //Long id = Long.valueOf(1);
-        listaUsuarios.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
-        userRepository.saveAll(listaUsuarios);
-        //listaPerfilUsuarios.add(new PerfilUsuarioEntity(id,"Perico", "12345"));
-        //perfilUsuarioRepository.saveAll(listaPerfilUsuarios);
+        listaUsers.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
+        userRepository.saveAll(listaUsers);
+        //listaUserProfiles.add(new UserProfileEntity(id,"Perico", "12345"));
+        //userProfileRepository.saveAll(listaUserProfiles);
         
     }
 }

@@ -23,38 +23,38 @@ import javax.validation.constraints.*;
 
 public class Language {
   
-  @JsonProperty("id")
+  @JsonProperty("idLanguage")
 
-  private Long id = null;
+  private Long idLanguage = null;
 
   @JsonProperty("name")
 
   private String name = null;
 
 
-  public Language id(Long id) { 
+  public Language idLanguage(Long idLanguage) { 
 
-    this.id = id;
+    this.idLanguage = idLanguage;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get idLanguage
+   * @return idLanguage
    **/
   
   @Schema(example = "123456789", required = true, description = "")
   
-  @NotNull
-  public Long getId() {  
-    return id;
+  
+  public Long getIdLanguage() {  
+    return idLanguage;
   }
 
 
 
-  public void setId(Long id) { 
+  public void setIdLanguage(Long idLanguage) { 
 
-    this.id = id;
+    this.idLanguage = idLanguage;
   }
 
   public Language name(String name) { 
@@ -70,7 +70,7 @@ public class Language {
   
   @Schema(example = "Spanish", required = true, description = "")
   
-  @NotNull
+  
   public String getName() {  
     return name;
   }
@@ -91,13 +91,13 @@ public class Language {
       return false;
     }
     Language language = (Language) o;
-    return Objects.equals(this.id, language.id) &&
+    return Objects.equals(this.idLanguage, language.idLanguage) &&
         Objects.equals(this.name, language.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(idLanguage, name);
   }
 
   @Override
@@ -105,7 +105,7 @@ public class Language {
     StringBuilder sb = new StringBuilder();
     sb.append("class Language {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    idLanguage: ").append(toIndentedString(idLanguage)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

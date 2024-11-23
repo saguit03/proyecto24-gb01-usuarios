@@ -5,7 +5,7 @@
  */
 package es.unex.swagger.api;
 
-import es.unex.swagger.model.TarjetaCredito;
+import es.unex.swagger.model.CreditCard;
 import es.unex.swagger.model.User;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -37,7 +37,7 @@ import java.util.Map;
 @Validated
 public interface CreditsCardApi {
 
-    @Operation(summary = "Añade una nueva tarjeta de crédito al usuario", description = "Inserta una nueva forma de pago al usuario", security = {
+    @Operation(summary = "Añade una nueva card de crédito al user", description = "Inserta una nueva forma de pago al user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
@@ -47,22 +47,22 @@ public interface CreditsCardApi {
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Usuario o perfil de usuario no encontrado") })
+        @ApiResponse(responseCode = "404", description = "User o profile de user no encontrado") })
     @RequestMapping(value = "/creditsCard",
         consumes = { "application/json", "application/xml" }, 
         method = RequestMethod.POST)
     ResponseEntity<Void> addCreditCard(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody TarjetaCredito body
+, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody CreditCard body
 );
 
 
-    @Operation(summary = "Eliimina la información de la tarjeta de crédito, dada su IBAN", description = "Elimina la información relacionada con la tarjeta de crédito, proporcionando su IBAN ", security = {
+    @Operation(summary = "Eliimina la información de la card de crédito, dada su IBAN", description = "Elimina la información relacionada con la card de crédito, proporcionando su IBAN ", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "creditCard" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TarjetaCredito.class))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CreditCard.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -70,17 +70,17 @@ public interface CreditsCardApi {
     @RequestMapping(value = "/creditsCard/{IBAN}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<TarjetaCredito> deleteCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
+    ResponseEntity<CreditCard> deleteCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
 );
 
 
-    @Operation(summary = "Devuelve la información de la tarjeta de crédito, dada su IBAN", description = "Obtiene la información relacionada con la tarjeta de crédito, proporcionando su IBAN ", security = {
+    @Operation(summary = "Devuelve la información de la card de crédito, dada su IBAN", description = "Obtiene la información relacionada con la card de crédito, proporcionando su IBAN ", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "creditCard" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TarjetaCredito.class))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CreditCard.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -88,34 +88,34 @@ public interface CreditsCardApi {
     @RequestMapping(value = "/creditsCard/{IBAN}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<TarjetaCredito> getCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
+    ResponseEntity<CreditCard> getCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
 );
 
 
-    @Operation(summary = "Devuelve la lista de todas las tarjetas de crédito del usuario", description = "Devuelve la lista de todas las tarjetas de crédito del usuario", security = {
+    @Operation(summary = "Devuelve la lista de todas las cards de crédito del user", description = "Devuelve la lista de todas las cards de crédito del user", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "creditCard" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = TarjetaCredito.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CreditCard.class)))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Usuario o perfil de usuario no encontrado") })
+        @ApiResponse(responseCode = "404", description = "User o profile de user no encontrado") })
     @RequestMapping(value = "/creditsCard",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<TarjetaCredito>> getMyCreditsCard();
+    ResponseEntity<List<CreditCard>> getMyCreditsCard();
 
 
-    @Operation(summary = "Actualiza la información de la tarjeta de crédito, dada su IBAN", description = "Actualiza la información relacionada con la tarjeta de crédito, proporcionando su IBAN ", security = {
+    @Operation(summary = "Actualiza la información de la card de crédito, dada su IBAN", description = "Actualiza la información relacionada con la card de crédito, proporcionando su IBAN ", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "creditCard" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TarjetaCredito.class))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CreditCard.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
@@ -123,7 +123,7 @@ public interface CreditsCardApi {
     @RequestMapping(value = "/creditsCard/{IBAN}",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<TarjetaCredito> updateCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
+    ResponseEntity<CreditCard> updateCreditCardByIBAN(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("IBAN") String IBAN
 );
 
 }

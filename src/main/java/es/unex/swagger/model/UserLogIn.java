@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UserLogIn {
 
 
-    @JsonProperty("username")
+  @JsonProperty("username")
 
   private String username = null;
 

@@ -6,7 +6,7 @@
 package es.unex.swagger.api;
 
 
-import es.unex.swagger.model.TipoSuscripcion;
+import es.unex.swagger.model.SubscriptionType;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -37,95 +37,95 @@ import java.util.Map;
 @Validated
 public interface SubscriptionPlansApi {
 
-    @Operation(summary = "Elimina un tipo de suscripcion, válida en la aplicación de Mediflí.", description = "Elimina un tipo de suscripcion, válida en la aplicación de Mediflí.", security = {
+    @Operation(summary = "Elimina un tipo de subscription, válida en la aplicación de Mediflí.", description = "Elimina un tipo de subscription, válida en la aplicación de Mediflí.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscriptionPlans" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TipoSuscripcion.class))),
+        @ApiResponse(responseCode = "204", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SubscriptionType.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Plan de suscripcion no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Plan de subscription no encontrado") })
     @RequestMapping(value = "/subscriptionPlans/{idSubscriptionPlan}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<TipoSuscripcion> deleteSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
+    ResponseEntity<SubscriptionType> deleteSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
 );
 
 
-    @Operation(summary = "Devuelve la lista de todos los tipos de suscripciones, validas en la aplicación de Mediflí.", description = "Devuelve la lista de todos los tipos de suscripciones, validas en la aplicación de Mediflí.", security = {
+    @Operation(summary = "Devuelve la lista de todos los tipos de subscriptiones, validas en la aplicación de Mediflí.", description = "Devuelve la lista de todos los tipos de subscriptiones, validas en la aplicación de Mediflí.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscriptionPlans" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = TipoSuscripcion.class)))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = SubscriptionType.class)))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Lista de suscripciones no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Lista de subscriptiones no encontrado") })
     @RequestMapping(value = "/subscriptionPlans",
         produces = { "application/json", "application/xml" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<TipoSuscripcion>> getAllSubscriptionPlans();
+    ResponseEntity<List<SubscriptionType>> getAllSubscriptionPlans();
 
 
-    @Operation(summary = "Devuelve un tipo de suscripcion, valida en la aplicación de Mediflí.", description = "Devuelve un tipo de suscripcion, valida en la aplicación de Mediflí.", security = {
+    @Operation(summary = "Devuelve un tipo de subscription, valida en la aplicación de Mediflí.", description = "Devuelve un tipo de subscription, valida en la aplicación de Mediflí.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscriptionPlans" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TipoSuscripcion.class))),
+        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SubscriptionType.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Plan de suscripcion no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Plan de subscription no encontrado") })
     @RequestMapping(value = "/subscriptionPlans/{idSubscriptionPlan}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.GET)
-    ResponseEntity<TipoSuscripcion> getSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
+    ResponseEntity<SubscriptionType> getSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
 );
 
 
-    @Operation(summary = "Añade un nuevo tipo de suscripcion, validas en la aplicación de Mediflí.", description = "Añade un nuevo tipo de suscripcion, validas en la aplicación de Mediflí.", security = {
+    @Operation(summary = "Añade un nuevo tipo de subscription, validas en la aplicación de Mediflí.", description = "Añade un nuevo tipo de subscription, validas en la aplicación de Mediflí.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscriptionPlans" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = TipoSuscripcion.class)))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = SubscriptionType.class)))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Lista de suscripciones no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Lista de subscriptiones no encontrado") })
     @RequestMapping(value = "/subscriptionPlans",
         produces = { "application/json", "application/xml" }, 
         consumes = { "application/json", "application/xml" }, 
         method = RequestMethod.POST)
-    ResponseEntity<List<TipoSuscripcion>> postListSubscriptionPlans(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody TipoSuscripcion body
+    ResponseEntity<List<SubscriptionType>> postListSubscriptionPlans(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SubscriptionType body
 );
 
 
-    @Operation(summary = "Actualiza o añade un tipo de suscripcion, valida en la aplicación de Mediflí.", description = "Actualiza o añade un tipo de suscripcion, valida en la aplicación de Mediflí.", security = {
+    @Operation(summary = "Actualiza o añade un tipo de subscription, valida en la aplicación de Mediflí.", description = "Actualiza o añade un tipo de subscription, valida en la aplicación de Mediflí.", security = {
         @SecurityRequirement(name = "cookieAuth"),
 @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "subscriptionPlans" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TipoSuscripcion.class))),
+        @ApiResponse(responseCode = "201", description = "Operación exitosa", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SubscriptionType.class))),
         
         @ApiResponse(responseCode = "400", description = "Valor no soportado"),
         
-        @ApiResponse(responseCode = "404", description = "Plan de suscripcion no encontrado") })
+        @ApiResponse(responseCode = "404", description = "Plan de subscription no encontrado") })
     @RequestMapping(value = "/subscriptionPlans/{idSubscriptionPlan}",
         produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<TipoSuscripcion> updateSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea acceder.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
-, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody TipoSuscripcion body
+    ResponseEntity<SubscriptionType> updateSubscriptionPlansByIdSubscritionPlan(@Parameter(in = ParameterIn.PATH, description = "El id del tipo de suscripción que se desea acceder.", required=true, schema=@Schema()) @PathVariable("idSubscriptionPlan") Integer idSubscriptionPlan
+, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SubscriptionType body
 );
 
 }
