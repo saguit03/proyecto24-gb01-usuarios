@@ -16,6 +16,7 @@ import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 import javax.annotation.PostConstruct;
@@ -35,7 +36,9 @@ import java.util.List;
 @SpringBootApplication
 @EnableJpaRepositories("es.unex.asee.gb01.contents.repositories")
 @EntityScan(basePackages = "es.unex.asee.gb01.contents.Entities")
-@ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents", "es.unex.asee.gb01.contents.repositories", "es.unex.asee.gb01.contents.entities", "es.unex.asee.gb01.contents.mappers"})
+@EnableFeignClients(basePackages = "es.unex.asee.gb01.contents.clients")
+@ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents"})
+
 public class Swagger2SpringBoot implements CommandLineRunner {
     @Autowired UserRepository userRepository;
     @Autowired UserProfileRepository userProfileRepository;
@@ -80,7 +83,16 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         List<UserProfileEntity> listaUserProfiles = new ArrayList<>();
         //Long id = Long.valueOf(1);
         listaUsers.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
+        listaUsers.add(new UserEntity("Perico", "Martín", "pericomartin", "perico@gmail.com", "12345"));
+        listaUsers.add(new UserEntity("Pablo", "Fernández", "pafergon", "pafergon@gmail.com", "12345"));
+        listaUsers.add(new UserEntity("Daniel", "Mocinha", "danielmocinha", "dmocinha@alumnos.unex.es", "12345"));
+        listaUsers.add(new UserEntity("Sara", "Guillén", "sara", "sguillenl@alumnos.unex.es", "sara"));
+
+
         userRepository.saveAll(listaUsers);
+        
+        
+        
         //listaUserProfiles.add(new UserProfileEntity(id,"Perico", "12345"));
         //userProfileRepository.saveAll(listaUserProfiles);
         

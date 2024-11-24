@@ -5,13 +5,13 @@ package es.unex.swagger.api;
 import es.unex.swagger.model.Language;
 import es.unex.swagger.model.UserProfile;
 import es.unex.swagger.model.Subscription;
+import es.unex.asee.gb01.contents.entities.UserEntity;
+import es.unex.asee.gb01.contents.mappers.UserMapper;
+import es.unex.asee.gb01.contents.repositories.UserRepository;
 import es.unex.swagger.model.CreditCard;
 import es.unex.swagger.model.SubscriptionType;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserLogIn;
-import es.unex.asee.gb01.contents.entities.UserEntity;
-import es.unex.asee.gb01.contents.mappers.UserMapper;
-import es.unex.asee.gb01.contents.repositories.UserRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
