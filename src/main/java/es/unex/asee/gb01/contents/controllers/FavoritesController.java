@@ -23,7 +23,7 @@ public class FavoritesController {
     @Autowired FavoriteService favoriteService;
     @Autowired FavoritesRepository favoritesRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public Iterable<FavoriteEntity> getAllFavorites() {
         return favoriteService.getAllFavorites();
     }

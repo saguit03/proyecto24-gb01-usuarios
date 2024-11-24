@@ -35,6 +35,15 @@ public class FavoriteService {
     public void removeFavorite(Long idUser, Long idFavorite) {
         FavoriteEntity favorite = favoritesRepository.findById(idFavorite)
                 .orElseThrow(() -> new EntityNotFoundException("Favorite not found"));
+        
+        // Verificar que el favorito pertenece al usuario
+        if (!favorite.getIdUser().equals(idUser)) {
+            try {
+                throw new Exception("User does not own this favorite");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         favoritesRepository.delete(favorite);
     }
