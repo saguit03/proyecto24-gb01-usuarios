@@ -9,28 +9,30 @@ import es.unex.asee.gb01.contents.dto.MovieDTO;
 import es.unex.asee.gb01.contents.dto.SeasonDTO;
 import es.unex.asee.gb01.contents.dto.SeriesDTO;
 
+import java.util.List;
+
 @Service
 public class ContentService {
 
     @Autowired private final ContentsClient contentsClient;
-    
+
     public ContentService(ContentsClient contentsClient) {
         this.contentsClient = contentsClient;
     }
 
-    public MovieDTO getMovie(int movieId) {
+    public List<MovieDTO> getMovie(int movieId) {
         return contentsClient.getMovie(movieId);
     }
 
-    public CategoryDTO fetchCategory(int categoryId) {
+    public List<CategoryDTO> fetchCategory(int categoryId) {
         return contentsClient.getCategory(categoryId);
     }
 
-    public SeriesDTO fetchSeries(int seriesId) {
+    public List<SeriesDTO> fetchSeries(int seriesId) {
         return contentsClient.getSeries(seriesId);
     }
 
-    public SeasonDTO fetchSeason(int seasonId) {
+    public List<SeasonDTO> fetchSeason(int seasonId) {
         return contentsClient.getSeason(seasonId);
     }
 }
