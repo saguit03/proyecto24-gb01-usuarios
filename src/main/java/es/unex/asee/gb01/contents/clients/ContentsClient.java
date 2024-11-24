@@ -23,6 +23,6 @@ public interface ContentsClient {
     @GetMapping("/series/{idSeries}")
     List<SeriesDTO> getSeries(@PathVariable("idSeries") Integer idSeries);
 
-    @GetMapping("/series/{idSeason}")
+    @GetMapping("/seasons/{idSeason}")
     List<SeasonDTO> getSeason(@PathVariable("idSeason") Integer idSeason);
 }
