@@ -8,23 +8,27 @@ import java.util.Objects;
 public class FavoriteEntity {
     @Id
     @GeneratedValue
-    private Long idFavorite;
+    private long idFavorite;
 
     
     @Column(name = "idUser", nullable = false)
-    private Long idUser;
+    private long idUser;
+
 
     
     @Column(name = "idContent", nullable = false)
-    private Long idContent;
+    private long idContent;
+
+    private int contentType;
 
     // Constructor sin argumentos
     public FavoriteEntity() {}
 
     // Constructor con argumentos
-    public FavoriteEntity(Long idUser, Long idContent) {
+    public FavoriteEntity(Long idUser, Long idContent, int contentType) {
         this.idUser = idUser;
         this.idContent = idContent;
+        this.contentType = contentType;
     }
 
     // Getters y Setters
@@ -36,20 +40,28 @@ public class FavoriteEntity {
         this.idFavorite = idFavorite;
     }
 
-    public Long getidUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setidUser(Long idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 
-    public Long getidContent() {
+    public Long getIdContent() {
         return idContent;
     }
 
-    public void setidContent(Long idContent) {
+    public void setIdContent(Long idContent) {
         this.idContent = idContent;
+    }
+
+    public int getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(int contentType) {
+        this.contentType = contentType;
     }
 
     // Métodos equals y hashCode
@@ -59,12 +71,14 @@ public class FavoriteEntity {
         if (o == null || getClass() != o.getClass()) return false;
         FavoriteEntity that = (FavoriteEntity) o;
         return Objects.equals(idUser, that.idUser) &&
-               Objects.equals(idContent, that.idContent);
+               Objects.equals(idContent, that.idContent) &&
+                contentType == that.contentType
+               ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, idContent);
+        return Objects.hash(idUser, idContent, contentType);
     }
 
     // Método toString
@@ -74,6 +88,7 @@ public class FavoriteEntity {
                 "idFavorite=" + idFavorite +
                 ", idUser=" + idUser +
                 ", idContent=" + idContent +
+                ", contentType=" + contentType +
                 '}';
     }
 }
