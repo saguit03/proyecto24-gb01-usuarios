@@ -24,15 +24,15 @@ public class ContentService {
         return contentsClient.getMovie(movieId);
     }
 
-    public List<CategoryDTO> fetchCategory(int categoryId) {
+    public List<CategoryDTO> getCategory(int categoryId) {
         return contentsClient.getCategory(categoryId);
     }
 
-    public List<SeriesDTO> fetchSeries(int seriesId) {
+    public List<SeriesDTO> getSeries(int seriesId) {
         return contentsClient.getSeries(seriesId);
     }
 
-    public List<SeasonDTO> fetchSeason(int seasonId) {
+    public List<SeasonDTO> getSeason(int seasonId) {
         return contentsClient.getSeason(seasonId);
     }
 }
