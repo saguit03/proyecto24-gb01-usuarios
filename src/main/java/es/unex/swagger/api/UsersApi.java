@@ -43,6 +43,7 @@ import java.util.Map;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-18T10:29:32.211856553Z[GMT]")
 @Validated
+
 public interface UsersApi {
 
     @Operation(summary = "Elimina la suscripción de un user, dando la id de la suscripción", description = "Elimina la suscripción de un user, dando la id de la suscripción.", security = {
@@ -133,7 +134,7 @@ public interface UsersApi {
 );
 
 
-    @Operation(summary = "Añade un nuevo user a la base de datos.", description = "Añade un nuevo user a la base de datos, recibiendo todo su información en el cuerpo de la petición.", security = {
+/*    @Operation(summary = "Añade un nuevo user a la base de datos.", description = "Añade un nuevo user a la base de datos, recibiendo todo su información en el cuerpo de la petición.", security = {
         @SecurityRequirement(name = "medifli_auth", scopes = {
             "write:users",
 "read:users"        })    }, tags={ "user" })
@@ -150,7 +151,7 @@ public interface UsersApi {
         consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
         method = RequestMethod.POST)
     ResponseEntity<User> postUser(@Parameter(in = ParameterIn.DEFAULT, description = "Add a new user in the database", required=true, schema=@Schema()) @Valid @RequestBody UserLogIn body
-);
+);*/
     // Nuevo método que acepta datos en formato form-urlencoded
     @PostMapping( value = "/users",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     ResponseEntity<User> postUserForm(

@@ -44,6 +44,7 @@ import java.util.Map;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-18T10:29:32.211856553Z[GMT]")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UsersApiController implements UsersApi {
     
 
@@ -53,6 +54,10 @@ public class UsersApiController implements UsersApi {
 
     private final HttpServletRequest request;
     @Autowired UserRepository userRepository;
+    @Autowired
+    private es.unex.asee.gb01.contents.services.UserService userService;
+    @Autowired
+    private UserMapper userMapper;
 
     @org.springframework.beans.factory.annotation.Autowired
     public UsersApiController(ObjectMapper objectMapper, HttpServletRequest request) {
@@ -228,7 +233,7 @@ public ResponseEntity<User> postUser(@Valid @RequestBody UserLogIn body) {
     }
 
     public ResponseEntity<Subscription> updateSubscriptionByUserCookie(
-@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Subscription body
+@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="User", required=true) User sessionUserCookie,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Subscription body
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
@@ -249,28 +254,30 @@ public ResponseEntity<User> postUser(@Valid @RequestBody UserLogIn body) {
         
         try {
             User user = null;
-            if(userRepository.findByUsername(body.getUsername()) != null){
+            if(userRepository.findByUsername(body.getUsername()) != null ){
 
                     user = UserMapper.toModel(userRepository.findByUsername(body.getUsername()));
-                    if(user.getPassword() != body.getPassword().trim()){
+                    if(!user.getPassword().equals(body.getPassword().trim()) ){
                     log.error("La contraseña es incorrecta");
-                    return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+                    return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
                     }
             }else{
                 log.error("El user no existe");
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
             
 
-            Cookie cookieUser = new Cookie("User", user.toString());
-            // cookieUser.setPath("/");
-            // response.addCookie(cookieUser);
-            
+            Cookie cookieUser = new Cookie("User", user.getEmail());
+                         cookieUser.setPath("http://localhost:3000/");
+                        response.addCookie(cookieUser);
+
             return new ResponseEntity<User>(user, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Couldn't serialize response for content type application/json", e);
             return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
 }

@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.Module;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ import java.util.List;
 @EnableJpaRepositories("es.unex.asee.gb01.contents.repositories")
 @EntityScan(basePackages = "es.unex.asee.gb01.contents.Entities")
 @ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents", "es.unex.asee.gb01.contents.repositories", "es.unex.asee.gb01.contents.entities", "es.unex.asee.gb01.contents.mappers"})
+
 public class Swagger2SpringBoot implements CommandLineRunner {
     @Autowired UserRepository userRepository;
     @Autowired UserProfileRepository userProfileRepository;
