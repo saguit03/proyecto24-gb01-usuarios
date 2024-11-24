@@ -1,12 +1,12 @@
 package es.unex.swagger.api;
 
 
+import es.unex.swagger.model.UserProfile;
 import es.unex.asee.gb01.contents.entities.UserEntity;
 import es.unex.asee.gb01.contents.entities.UserProfileEntity;
 import es.unex.asee.gb01.contents.mappers.UserMapper;
 import es.unex.asee.gb01.contents.mappers.UserProfileMapper;
 import es.unex.asee.gb01.contents.repositories.UserProfileRepository;
-import es.unex.swagger.model.UserProfile;
 import es.unex.swagger.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
