@@ -36,7 +36,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableJpaRepositories("es.unex.asee.gb01.contents.repositories")
-@EntityScan(basePackages = "es.unex.asee.gb01.contents.Entities")
+@EntityScan(basePackages = "es.unex.asee.gb01.contents.entities")
 @EnableFeignClients(basePackages = "es.unex.asee.gb01.contents.clients")
 @ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents"})
 
