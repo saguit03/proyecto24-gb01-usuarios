@@ -8,6 +8,6 @@ import es.unex.asee.gb01.contents.entities.UserProfileEntity;
 import java.util.List;
 
 @Repository
-public interface UserProfileRepository extends JpaRepository<UserProfileEntity, Long> {             
+public interface UserProfileRepository extends JpaRepository<UserProfileEntity, Long> {
     List<UserProfileEntity> findByIdUser(Long idUser);
 }

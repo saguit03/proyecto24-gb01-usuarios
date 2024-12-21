@@ -1,4 +1,5 @@
 package es.unex.asee.gb01.contents.services;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import es.unex.asee.gb01.contents.clients.StatsClient;
@@ -11,7 +12,8 @@ import java.util.List;
 
 @Service
 public class StatsService {
-    @Autowired private final StatsClient statsClient;
+    @Autowired
+    private final StatsClient statsClient;
 
     public StatsService(StatsClient statsClient) {
         this.statsClient = statsClient;
@@ -28,5 +30,5 @@ public class StatsService {
     public List<ReviewDTO> getReview(int reviewId) {
         return statsClient.getReview(reviewId);
     }
-    
+
 }

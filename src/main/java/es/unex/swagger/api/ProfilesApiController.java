@@ -27,15 +27,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProfilesApiController implements ProfilesApi {
 
+    private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
+    private final ObjectMapper objectMapper;
+    private final HttpServletRequest request;
     @Autowired
     private UserProfileMapper userProfileMapper;
-
-    private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
-
-    private final ObjectMapper objectMapper;
-
-    private final HttpServletRequest request;
-
     @Autowired
     private UserProfileRepository userProfileRepository;
 

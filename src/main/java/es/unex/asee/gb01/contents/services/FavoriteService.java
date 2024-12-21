@@ -12,8 +12,10 @@ import es.unex.asee.gb01.contents.repositories.FavoritesRepository;
 
 @Service
 public class FavoriteService {
-    @Autowired ContentService contentService;
-    @Autowired FavoritesRepository favoritesRepository;
+    @Autowired
+    ContentService contentService;
+    @Autowired
+    FavoritesRepository favoritesRepository;
 
     public List<FavoriteEntity> getAllFavorites() {
         return favoritesRepository.findAll();
@@ -35,7 +37,7 @@ public class FavoriteService {
     public void removeFavorite(Long idUser, Long idFavorite) {
         FavoriteEntity favorite = favoritesRepository.findById(idFavorite)
                 .orElseThrow(() -> new EntityNotFoundException("Favorite not found"));
-        
+
         // Verificar que el favorito pertenece al usuario
         if (!favorite.getIdUser().equals(idUser)) {
             try {
@@ -49,6 +51,4 @@ public class FavoriteService {
     }
 
 
-    
-    
 }
