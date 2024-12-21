@@ -11,20 +11,16 @@ public class LanguageEntity {
     @GeneratedValue
     private Long idLanguage;
 
-    
     @Column(name = "name", nullable = false)
     private String name;
 
-    // Constructor sin argumentos
     public LanguageEntity() {}
 
-    // Constructor con argumentos
     public LanguageEntity(Long idLanguage, String name) {
         this.idLanguage = idLanguage;
         this.name = name;
     }
 
-    // Getters y Setters
     public Long getIdLanguage() {
         return idLanguage;
     }

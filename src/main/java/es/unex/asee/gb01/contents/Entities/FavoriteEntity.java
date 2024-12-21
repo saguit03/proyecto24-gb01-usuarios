@@ -9,29 +9,23 @@ public class FavoriteEntity {
     @Id
     @GeneratedValue
     private long idFavorite;
-
     
     @Column(name = "idUser", nullable = false)
     private long idUser;
 
-
-    
     @Column(name = "idContent", nullable = false)
     private long idContent;
 
     private int contentType;
 
-    // Constructor sin argumentos
     public FavoriteEntity() {}
 
-    // Constructor con argumentos
     public FavoriteEntity(Long idUser, Long idContent, int contentType) {
         this.idUser = idUser;
         this.idContent = idContent;
         this.contentType = contentType;
     }
 
-    // Getters y Setters
     public Long getIdFavorite() {
         return idFavorite;
     }
@@ -64,7 +58,6 @@ public class FavoriteEntity {
         this.contentType = contentType;
     }
 
-    // Métodos equals y hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,7 +74,6 @@ public class FavoriteEntity {
         return Objects.hash(idUser, idContent, contentType);
     }
 
-    // Método toString
     @Override
     public String toString() {
         return "FavoriteEntity{" +

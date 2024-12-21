@@ -7,7 +7,6 @@ package es.unex.swagger.api;
 
 
 import es.unex.asee.gb01.contents.entities.UserEntity;
-//import io.swagger.model.ComponentssecuritySchemescookieAuth;
 import es.unex.swagger.model.Subscription;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserLogIn;
@@ -133,25 +132,6 @@ public interface UsersApi {
     ResponseEntity<User> getUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idUser") Integer idUser
 );
 
-
-/*    @Operation(summary = "Añade un nuevo user a la base de datos.", description = "Añade un nuevo user a la base de datos, recibiendo todo su información en el cuerpo de la petición.", security = {
-        @SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Succesful operation. Created", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "User no encontrado"),
-        
-        @ApiResponse(responseCode = "422", description = "Excepción de validación") })
-    @RequestMapping(value = "/users",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        method = RequestMethod.POST)
-    ResponseEntity<User> postUser(@Parameter(in = ParameterIn.DEFAULT, description = "Add a new user in the database", required=true, schema=@Schema()) @Valid @RequestBody UserLogIn body
-);*/
     // Nuevo método que acepta datos en formato form-urlencoded
     @PostMapping( value = "/users",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     ResponseEntity<User> postUserForm(
@@ -217,20 +197,5 @@ public interface UsersApi {
         method = RequestMethod.POST)
     ResponseEntity<User> userLogIn(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserLogIn body, HttpServletResponse response
 );
-
-
-//     @Operation(summary = "Cierra la sesión del user", description = "Cierra la sesion del user, eliminando la cookie de la sesión del navegador.", security = {
-//         @SecurityRequirement(name = "cookieAuth")    }, tags={ "user" })
-//     @ApiResponses(value = { 
-//         @ApiResponse(responseCode = "200", description = "Succesful operation"),
-        
-//         @ApiResponse(responseCode = "400", description = "Error al cerrar sesión."),
-        
-//         @ApiResponse(responseCode = "404", description = "User no encontrado.") })
-//     @RequestMapping(value = "/users/logout",
-//         method = RequestMethod.GET)
-//     ResponseEntity<Void> usersLogoutGet(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) //@CookieValue(value="SessionCookie", required=true) //ComponentssecuritySchemescookieAuth sessionCookie
-// );
-
 }
 

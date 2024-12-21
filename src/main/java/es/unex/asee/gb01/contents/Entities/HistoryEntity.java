@@ -10,7 +10,6 @@ public class HistoryEntity {
     @Id
     @GeneratedValue
     private Long idView;
-
     
     @Column(name = "idUser", nullable = false)
     private Long idUser;
@@ -22,7 +21,6 @@ public class HistoryEntity {
         this.idView = idView;
     }
 
-    // Getters y Setters
     public Long getIdView() {
         return idView;
     }
@@ -39,7 +37,6 @@ public class HistoryEntity {
         this.idUser = idUser;
     }
 
-    // Métodos equals y hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
