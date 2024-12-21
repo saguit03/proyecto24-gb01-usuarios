@@ -2,9 +2,9 @@ package es.unex.swagger.api;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import es.unex.asee.gb01.contents.Entities.SubscriptionEntity;
-import es.unex.asee.gb01.contents.Entities.UserEntity;
-import es.unex.asee.gb01.contents.Mappers.SubscriptionMapper;
+import es.unex.asee.gb01.contents.entities.SubscriptionEntity;
+import es.unex.asee.gb01.contents.entities.UserEntity;
+import es.unex.asee.gb01.contents.mappers.SubscriptionMapper;
 import es.unex.asee.gb01.contents.repositories.SubscriptionRepository;
 import es.unex.asee.gb01.contents.repositories.UserRepository;
 import es.unex.swagger.model.Subscription;
@@ -35,12 +35,11 @@ public class SubscriptionsApiController implements SubscriptionsApi {
 
 
     private final ObjectMapper objectMapper;
-
+    private final HttpServletRequest request;
     @Autowired
     SubscriptionRepository subscriptionRepository;
     @Autowired
     UserRepository userRepository;
-    private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
     public SubscriptionsApiController(ObjectMapper objectMapper, HttpServletRequest request) {

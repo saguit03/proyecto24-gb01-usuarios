@@ -1,11 +1,8 @@
 package es.unex.swagger.api;
 
-
-//import io.swagger.model.ComponentssecuritySchemescookieAuth;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import es.unex.asee.gb01.contents.Entities.UserEntity;
-import es.unex.asee.gb01.contents.Mappers.UserMapper;
+import es.unex.asee.gb01.contents.entities.UserEntity;
+import es.unex.asee.gb01.contents.mappers.UserMapper;
 import es.unex.asee.gb01.contents.repositories.UserRepository;
 import es.unex.swagger.model.Subscription;
 import es.unex.swagger.model.User;
