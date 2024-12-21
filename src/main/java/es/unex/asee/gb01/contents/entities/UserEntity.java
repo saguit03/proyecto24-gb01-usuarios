@@ -8,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -128,6 +129,44 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return idUser.equals(that.idUser) &&
+                name.equals(that.name) &&
+                surname.equals(that.surname) &&
+                username.equals(that.username) &&
+                email.equals(that.email) &&
+                password.equals(that.password) &&
+                startDate.equals(that.startDate) &&
+                profilePicture.equals(that.profilePicture) &&
+                registerDate.equals(that.registerDate) &&
+                userProfiles.equals(that.userProfiles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUser, name, surname, username, email, password, startDate, profilePicture, registerDate, userProfiles);
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "idUser=" + idUser +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", registerDate='" + registerDate + '\'' +
+                ", userProfiles=" + userProfiles +
+                '}';
     }
 
 }
