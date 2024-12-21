@@ -30,7 +30,7 @@ import java.math.BigDecimal;
  */
 public class CustomInstantDeserializer<T extends Temporal>
         extends ThreeTenDateTimeDeserializerBase<T> {
-    public static final CustomInstantDeserializer<Instant> INSTANT = new CustomInstantDeserializer<Instant>(
+    public static final CustomInstantDeserializer<Instant> INSTANT = new CustomInstantDeserializer<>(
             Instant.class, DateTimeFormatter.ISO_INSTANT,
             new Function<TemporalAccessor, Instant>() {
                 @Override
@@ -52,7 +52,7 @@ public class CustomInstantDeserializer<T extends Temporal>
             },
             null
     );
-    public static final CustomInstantDeserializer<OffsetDateTime> OFFSET_DATE_TIME = new CustomInstantDeserializer<OffsetDateTime>(
+    public static final CustomInstantDeserializer<OffsetDateTime> OFFSET_DATE_TIME = new CustomInstantDeserializer<>(
             OffsetDateTime.class, DateTimeFormatter.ISO_OFFSET_DATE_TIME,
             new Function<TemporalAccessor, OffsetDateTime>() {
                 @Override
@@ -79,7 +79,7 @@ public class CustomInstantDeserializer<T extends Temporal>
                 }
             }
     );
-    public static final CustomInstantDeserializer<ZonedDateTime> ZONED_DATE_TIME = new CustomInstantDeserializer<ZonedDateTime>(
+    public static final CustomInstantDeserializer<ZonedDateTime> ZONED_DATE_TIME = new CustomInstantDeserializer<>(
             ZonedDateTime.class, DateTimeFormatter.ISO_ZONED_DATE_TIME,
             new Function<TemporalAccessor, ZonedDateTime>() {
                 @Override
@@ -147,7 +147,7 @@ public class CustomInstantDeserializer<T extends Temporal>
         if (dtf == _formatter) {
             return this;
         }
-        return new CustomInstantDeserializer<T>(this, dtf);
+        return new CustomInstantDeserializer<>(this, dtf);
     }
 
     @Override
@@ -177,7 +177,7 @@ public class CustomInstantDeserializer<T extends Temporal>
 
             case JsonTokenId.ID_STRING: {
                 String string = parser.getText().trim();
-                if (string.length() == 0) {
+                if (string.isEmpty()) {
                     return null;
                 }
                 if (string.endsWith("+0000")) {
