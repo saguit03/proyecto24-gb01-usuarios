@@ -59,29 +59,29 @@ public class UserMapper {
     }
 
     public static List<User> toListModel(List<UserEntity> listUserEntity) {
-        if (listUserEntity.size() == 0) return null;
         List<User> listUserModel = new ArrayList<>();
-        for (UserEntity userEntity : listUserEntity) {
-            User userModel = new User();
-            userModel.setIdUser(userEntity.getIdUser());
-            userModel.setName(userEntity.getName());
-            userModel.setSurname(userEntity.getSurname());
-            userModel.setUsername(userEntity.getUsername());
-            userModel.setEmail(userEntity.getEmail());
-            userModel.setPassword(userEntity.getPassword());
-            userModel.setStartDate(userEntity.getStartDate());
-            userModel.setProfilePicture(userEntity.getProfilePicture());
-            userModel.setRegisterDate(userEntity.getRegisterDate());
+        
+        if(!listUserEntity.isEmpty()) {
+            for (UserEntity userEntity : listUserEntity) {
+                User userModel = new User();
+                userModel.setIdUser(userEntity.getIdUser());
+                userModel.setName(userEntity.getName());
+                userModel.setSurname(userEntity.getSurname());
+                userModel.setUsername(userEntity.getUsername());
+                userModel.setEmail(userEntity.getEmail());
+                userModel.setPassword(userEntity.getPassword());
+                userModel.setStartDate(userEntity.getStartDate());
+                userModel.setProfilePicture(userEntity.getProfilePicture());
+                userModel.setRegisterDate(userEntity.getRegisterDate());
 
-            listUserModel.add(userModel);
+                listUserModel.add(userModel);
+            }
         }
-
         return listUserModel;
     }
 
     public User loginToUser(UserLogIn logIn) {
-        User user = new User(logIn.getUsername(), logIn.getPassword());
-        return user;
+        return new User(logIn.getUsername(), logIn.getPassword());
     }
 
     public UserLogIn userToLogIn(User user) {

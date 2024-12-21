@@ -1,6 +1,11 @@
 package es.unex.asee.gb01.contents.entities;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+
 import java.util.Objects;
 
 @Entity

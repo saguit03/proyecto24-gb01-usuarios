@@ -1,7 +1,12 @@
 package es.unex.asee.gb01.contents.entities;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "subscriptions")
@@ -57,10 +62,15 @@ public class SubscriptionEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SubscriptionEntity that = (SubscriptionEntity) o;
-        return idSubscription == that.idSubscription &&
-                idUser == that.idUser &&
+        return idSubscription.equals(that.idSubscription) &&
+                idUser.equals(that.idUser) &&
                 startDate.equals(that.startDate) &&
                 endDate.equals(that.endDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idSubscription, idUser, startDate, endDate);
     }
 
     @Override
