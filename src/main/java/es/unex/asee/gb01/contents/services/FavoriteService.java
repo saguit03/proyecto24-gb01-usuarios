@@ -12,10 +12,15 @@ import es.unex.asee.gb01.contents.repositories.FavoritesRepository;
 
 @Service
 public class FavoriteService {
-    @Autowired
+    
     ContentService contentService;
-    @Autowired
     FavoritesRepository favoritesRepository;
+
+    @Autowired
+    public FavoriteService(ContentService contentService, FavoritesRepository favoritesRepository) {
+        this.contentService = contentService;
+        this.favoritesRepository = favoritesRepository;
+    }
 
     public List<FavoriteEntity> getAllFavorites() {
         return favoritesRepository.findAll();

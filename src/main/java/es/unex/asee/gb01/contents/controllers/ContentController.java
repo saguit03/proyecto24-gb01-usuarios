@@ -15,8 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/contents")
 public class ContentController {
-    @Autowired
     ContentsClient contentsClient;
+    
+    @Autowired
+    public ContentController(ContentsClient contentsClient) {
+        this.contentsClient = contentsClient;
+    }
 
     @GetMapping("/movies/{idMovie}")
     public List<MovieDTO> getMovie(@PathVariable("idMovie") Integer idMovie) {

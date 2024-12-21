@@ -12,9 +12,9 @@ import java.util.List;
 
 @Service
 public class StatsService {
-    @Autowired
     private final StatsClient statsClient;
 
+    @Autowired
     public StatsService(StatsClient statsClient) {
         this.statsClient = statsClient;
     }

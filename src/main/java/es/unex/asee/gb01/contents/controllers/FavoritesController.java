@@ -19,10 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/favorites")
 public class FavoritesController {
-    @Autowired
+    
     FavoriteService favoriteService;
-    @Autowired
     FavoritesRepository favoritesRepository;
+
+    @Autowired
+    public FavoritesController(FavoriteService favoriteService, FavoritesRepository favoritesRepository) {
+        this.favoriteService = favoriteService;
+        this.favoritesRepository = favoritesRepository;
+    }
 
     @GetMapping("")
     public Iterable<FavoriteEntity> getAllFavorites() {

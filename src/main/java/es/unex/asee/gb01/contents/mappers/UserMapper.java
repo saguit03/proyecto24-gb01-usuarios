@@ -4,13 +4,10 @@ import es.unex.asee.gb01.contents.entities.UserEntity;
 import es.unex.asee.gb01.contents.entities.UserProfileEntity;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserLogIn;
-
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.ArrayList;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
