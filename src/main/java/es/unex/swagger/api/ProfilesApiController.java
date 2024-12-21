@@ -2,8 +2,8 @@ package es.unex.swagger.api;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import es.unex.asee.gb01.contents.Entities.UserProfileEntity;
-import es.unex.asee.gb01.contents.Mappers.UserProfileMapper;
+import es.unex.asee.gb01.contents.entities.UserProfileEntity;
+import es.unex.asee.gb01.contents.mappers.UserProfileMapper;
 import es.unex.asee.gb01.contents.repositories.UserProfileRepository;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserProfile;
@@ -27,15 +27,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProfilesApiController implements ProfilesApi {
 
+    private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
+    private final ObjectMapper objectMapper;
+    private final HttpServletRequest request;
     @Autowired
     private UserProfileMapper userProfileMapper;
-
-    private static final Logger log = LoggerFactory.getLogger(ProfilesApiController.class);
-
-    private final ObjectMapper objectMapper;
-
-    private final HttpServletRequest request;
-
     @Autowired
     private UserProfileRepository userProfileRepository;
 
