@@ -31,6 +31,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +39,17 @@ import java.util.List;
 @EnableJpaRepositories("es.unex.asee.gb01.contents.repositories")
 @EntityScan(basePackages = "es.unex.asee.gb01.contents.entities")
 @EnableFeignClients(basePackages = "es.unex.asee.gb01.contents.clients")
-@ComponentScan(basePackages = { "es.unex.swagger", "es.unex.swagger.api" , "es.unex.swagger.configuration","es.unex.asee.gb01.contents"})
+@ComponentScan(basePackages = {"es.unex.swagger", "es.unex.swagger.api", "es.unex.swagger.configuration", "es.unex.asee.gb01.contents"})
 
 public class Swagger2SpringBoot implements CommandLineRunner {
-    @Autowired UserRepository userRepository;
-    @Autowired UserProfileRepository userProfileRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    UserProfileRepository userProfileRepository;
+
+    public static void main(String[] args) throws Exception {
+        new SpringApplication(Swagger2SpringBoot.class).run(args);
+    }
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -51,12 +58,24 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        new SpringApplication(Swagger2SpringBoot.class).run(args);
-    }
     @Bean
     public Module jsonNullableModule() {
         return new JsonNullableModule();
+    }
+
+    @PostConstruct
+    public void init() {
+        List<UserEntity> listaUsers = new ArrayList<>();
+        List<UserProfileEntity> listaUserProfiles = new ArrayList<>();
+        //Long id = Long.valueOf(1);
+        listaUsers.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
+        listaUserProfiles.add(new UserProfileEntity(1L, "Sergio", "1234"));
+        listaUsers.add(new UserEntity("Perico", "Martín", "pericomartin", "perico@gmail.com", "12345"));
+        listaUsers.add(new UserEntity("Pablo", "Fernández", "pafergon", "pafergon@gmail.com", "12345"));
+        listaUsers.add(new UserEntity("Daniel", "Mocinha", "danielmocinha", "dmocinha@alumnos.unex.es", "12345"));
+        listaUsers.add(new UserEntity("Sara", "Guillén", "sara", "sguillenl@alumnos.unex.es", "sara"));
+
+        userRepository.saveAll(listaUsers);
     }
 
     @Configuration
@@ -75,20 +94,5 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         public int getExitCode() {
             return 10;
         }
-    }
-
-    @PostConstruct
-    public void init() {
-        List<UserEntity> listaUsers = new ArrayList<>();
-        List<UserProfileEntity> listaUserProfiles = new ArrayList<>();
-        //Long id = Long.valueOf(1);
-        listaUsers.add(new UserEntity("Sergio", "Martín", "semartinl", "semartinl@gmail.com", "12345"));
-        listaUserProfiles.add(new UserProfileEntity(1L,"Sergio","1234"));   
-        listaUsers.add(new UserEntity("Perico", "Martín", "pericomartin", "perico@gmail.com", "12345"));
-        listaUsers.add(new UserEntity("Pablo", "Fernández", "pafergon", "pafergon@gmail.com", "12345"));
-        listaUsers.add(new UserEntity("Daniel", "Mocinha", "danielmocinha", "dmocinha@alumnos.unex.es", "12345"));
-        listaUsers.add(new UserEntity("Sara", "Guillén", "sara", "sguillenl@alumnos.unex.es", "sara"));
-
-        userRepository.saveAll(listaUsers);
     }
 }

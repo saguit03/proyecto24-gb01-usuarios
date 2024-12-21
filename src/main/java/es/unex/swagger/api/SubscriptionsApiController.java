@@ -35,12 +35,11 @@ public class SubscriptionsApiController implements SubscriptionsApi {
 
 
     private final ObjectMapper objectMapper;
-
+    private final HttpServletRequest request;
     @Autowired
     SubscriptionRepository subscriptionRepository;
     @Autowired
     UserRepository userRepository;
-    private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
     public SubscriptionsApiController(ObjectMapper objectMapper, HttpServletRequest request) {

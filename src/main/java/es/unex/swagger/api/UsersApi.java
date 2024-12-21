@@ -46,94 +46,94 @@ import java.util.Map;
 public interface UsersApi {
 
     @Operation(summary = "Elimina la suscripción de un user, dando la id de la suscripción", description = "Elimina la suscripción de un user, dando la id de la suscripción.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "subscription" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "204", description = "Operación exitosa."),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "Suscripción no encontrada") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"subscription"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Operación exitosa."),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "Suscripción no encontrada")})
     @RequestMapping(value = "/users/subscriptions",
-        method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteSubscriptionByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-);
+            method = RequestMethod.DELETE)
+    ResponseEntity<Void> deleteSubscriptionByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "", required = true, schema = @Schema()) @CookieValue(value = "SessionUserCookie", required = true) User sessionUserCookie
+    );
 
 
     @Operation(summary = "Elimina el user por su id", description = "Elimina el user dado su id en el endpoint.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "User no encontrado") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "User no encontrado")})
     @RequestMapping(value = "/users/{idUser}",
-        produces = { "application/json", "application/xml" }, 
-        method = RequestMethod.DELETE)
-    ResponseEntity<User> deleteUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idUser") Integer idUser
-);
+            produces = {"application/json", "application/xml"},
+            method = RequestMethod.DELETE)
+    ResponseEntity<User> deleteUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required = true, schema = @Schema()) @PathVariable("idUser") Integer idUser
+    );
 
 
     @Operation(summary = "Devuelve la información de todos los users", description = " Devuelve la lista de todos los users del sistema registrados.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class)))),
-        
-        @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
-        
-        @ApiResponse(responseCode = "404", description = "User not found") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class)))),
+
+            @ApiResponse(responseCode = "400", description = "Invalid ID supplied"),
+
+            @ApiResponse(responseCode = "404", description = "User not found")})
     @RequestMapping(value = "/users",
-        produces = { "application/json", "application/xml" }, 
-        method = RequestMethod.GET)
+            produces = {"application/json", "application/xml"},
+            method = RequestMethod.GET)
     List<UserEntity> getAllUsers();
 
 
     @Operation(summary = "Devuelve la suscripción de un user.", description = "Devuelve la suscripción de un user, a partir de la cookie guardada en el navegador sobre el user.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "subscription" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "Suscripción no encontrada") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"subscription"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "Suscripción no encontrada")})
     @RequestMapping(value = "/users/subscriptions",
-        produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<Subscription> getSubscriptionByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-);
+            produces = {"application/json", "application/xml", "application/x-www-form-urlencoded"},
+            method = RequestMethod.GET)
+    ResponseEntity<Subscription> getSubscriptionByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "", required = true, schema = @Schema()) @CookieValue(value = "SessionUserCookie", required = true) User sessionUserCookie
+    );
 
 
     @Operation(summary = "Devuelve el user por su id", description = "Devuelve toda la infomración del user, dada su id", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "User no encontrado") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "User no encontrado")})
     @RequestMapping(value = "/users/{idUser}",
-        produces = { "application/json", "application/xml" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<User> getUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idUser") Integer idUser
-);
+            produces = {"application/json", "application/xml"},
+            method = RequestMethod.GET)
+    ResponseEntity<User> getUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required = true, schema = @Schema()) @PathVariable("idUser") Integer idUser
+    );
 
     // Nuevo método que acepta datos en formato form-urlencoded
-    @PostMapping( value = "/users",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/users", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     ResponseEntity<User> postUserForm(
             @RequestParam("name") String name,
             @RequestParam("surname") String surname,
@@ -142,60 +142,60 @@ public interface UsersApi {
             @RequestParam("password") String password);
 
     @Operation(summary = "Actualiza la información del user por su id", description = "Actualiza la información del user dado su id en el endpoint.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "User no encontrado") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "User no encontrado")})
     @RequestMapping(value = "/users/{idUser}",
-        produces = { "application/json", "application/xml" }, 
-        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        method = RequestMethod.PUT)
-    ResponseEntity<User> putUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required=true, schema=@Schema()) @PathVariable("idUser") Integer idUser, @Valid @RequestBody User body
-);
+            produces = {"application/json", "application/xml"},
+            consumes = {"application/json", "application/xml", "application/x-www-form-urlencoded"},
+            method = RequestMethod.PUT)
+    ResponseEntity<User> putUserById(@Parameter(in = ParameterIn.PATH, description = "El id del user que se desea buscar.", required = true, schema = @Schema()) @PathVariable("idUser") Integer idUser, @Valid @RequestBody User body
+    );
 
 
     @Operation(summary = "Actualiza la suscripción de un user, dando la cookie del user", description = "Actualiza la suscripción de un user, dando la cookie del user.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "subscription" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "Suscripción no encontrada") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"subscription"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Operación exitosa.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Subscription.class))),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "Suscripción no encontrada")})
     @RequestMapping(value = "/users/subscriptions",
-        produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        method = RequestMethod.PUT)
-    ResponseEntity<Subscription> updateSubscriptionByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "" ,required=true,schema=@Schema()) @CookieValue(value="SessionUserCookie", required=true) User sessionUserCookie
-, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Subscription body
-);
+            produces = {"application/json", "application/xml", "application/x-www-form-urlencoded"},
+            consumes = {"application/json", "application/xml", "application/x-www-form-urlencoded"},
+            method = RequestMethod.PUT)
+    ResponseEntity<Subscription> updateSubscriptionByUserCookie(@Parameter(in = ParameterIn.COOKIE, description = "", required = true, schema = @Schema()) @CookieValue(value = "SessionUserCookie", required = true) User sessionUserCookie
+            , @Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody Subscription body
+    );
 
 
     @Operation(summary = "Inicio de sesión de un user", description = "Inicio de sesión de un user, añadiendo la cookie para mantener la sesión abierta.", security = {
-        @SecurityRequirement(name = "cookieAuth"),
-@SecurityRequirement(name = "medifli_auth", scopes = {
-            "write:users",
-"read:users"        })    }, tags={ "user" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Successfully authenticated. The session ID is returned in a cookie named `JSESSIONID`. You need to include this cookie in subsequent requests.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
-        
-        @ApiResponse(responseCode = "400", description = "Valor no soportado"),
-        
-        @ApiResponse(responseCode = "404", description = "User no encontrado") })
+            @SecurityRequirement(name = "cookieAuth"),
+            @SecurityRequirement(name = "medifli_auth", scopes = {
+                    "write:users",
+                    "read:users"})}, tags = {"user"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully authenticated. The session ID is returned in a cookie named `JSESSIONID`. You need to include this cookie in subsequent requests.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+
+            @ApiResponse(responseCode = "400", description = "Valor no soportado"),
+
+            @ApiResponse(responseCode = "404", description = "User no encontrado")})
     @RequestMapping(value = "/users/login",
-        produces = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        consumes = { "application/json", "application/xml", "application/x-www-form-urlencoded" }, 
-        method = RequestMethod.POST)
-    ResponseEntity<User> userLogIn(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody UserLogIn body, HttpServletResponse response
-);
+            produces = {"application/json", "application/xml", "application/x-www-form-urlencoded"},
+            consumes = {"application/json", "application/xml", "application/x-www-form-urlencoded"},
+            method = RequestMethod.POST)
+    ResponseEntity<User> userLogIn(@Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody UserLogIn body, HttpServletResponse response
+    );
 }
 
