@@ -4,6 +4,10 @@ import es.unex.asee.gb01.contents.entities.UserProfileEntity;
 import es.unex.swagger.model.UserProfile;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.Collections;
+
 @Component
 public class UserProfileMapper {
     public static UserProfileEntity toEntity (UserProfile profile){

@@ -75,7 +75,6 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         public int getExitCode() {
             return 10;
         }
-
     }
 
     @PostConstruct
@@ -90,13 +89,6 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         listaUsers.add(new UserEntity("Daniel", "Mocinha", "danielmocinha", "dmocinha@alumnos.unex.es", "12345"));
         listaUsers.add(new UserEntity("Sara", "Guillén", "sara", "sguillenl@alumnos.unex.es", "sara"));
 
-
         userRepository.saveAll(listaUsers);
-
-
-
-        //listaUserProfiles.add(new UserProfileEntity(id,"Perico", "12345"));
-        //userProfileRepository.saveAll(listaUserProfiles);
-        
     }
 }

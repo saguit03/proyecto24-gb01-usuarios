@@ -4,9 +4,7 @@ package es.unex.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import es.unex.swagger.model.Language;
 import es.unex.swagger.model.UserProfile;
-import es.unex.swagger.model.CreditCard;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,14 +71,6 @@ public class User   {
   @JsonProperty("userProfiles")
   @Valid
   private List<UserProfile> userProfiles = null;
-  @JsonProperty("creditCards")
-  @Valid
-  private List<CreditCard> creditCards = null;
-  @JsonProperty("Language")
-
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
-  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private Language language = null;
 
 public User(){
     
@@ -124,13 +114,10 @@ public User(){
    * Get name
    * @return name
    **/
-  
   @Schema(example = "Pablo", required = true, description = "")
   public String getName() {  
     return name;
   }
-
-
 
   public void setName(String name) { 
 
@@ -147,13 +134,10 @@ public User(){
    * Get surname
    * @return surname
    **/
-  
   @Schema(example = "Fernandez", required = true, description = "")
   public String getSurname() {  
     return surname;
   }
-
-
 
   public void setSurname(String surname) { 
 
@@ -161,7 +145,6 @@ public User(){
   }
 
   public User username(String username) { 
-
     this.username = username;
     return this;
   }
@@ -176,10 +159,7 @@ public User(){
     return username;
   }
 
-
-
   public void setUsername(String username) { 
-
     this.username = username;
   }
 
@@ -193,22 +173,17 @@ public User(){
    * Get email
    * @return email
    **/
-  
   @Schema(example = "pafernandez@gmail.com", required = true, description = "")
   
   public String getEmail() {  
     return email;
   }
 
-
-
   public void setEmail(String email) { 
-
     this.email = email;
   }
 
   public User password(String password) { 
-
     this.password = password;
     return this;
   }
@@ -217,22 +192,16 @@ public User(){
    * Get password
    * @return password
    **/
-  
   @Schema(example = "pafernandez", required = true, description = "")
-  
   public String getPassword() {  
     return password;
   }
 
-
-
   public void setPassword(String password) { 
-
     this.password = password;
   }
 
   public User startDate(String startDate) { 
-
     this.startDate = startDate;
     return this;
   }
@@ -243,18 +212,15 @@ public User(){
    **/
   
   @Schema(example = "8/9/2024", description = "")
-  
   public String getStartDate() {  
     return startDate;
   }
-
 
   public void setStartDate(String startDate) { 
     this.startDate = startDate;
   }
 
   public User profilePicture(String profilePicture) { 
-
     this.profilePicture = profilePicture;
     return this;
   }
@@ -263,14 +229,10 @@ public User(){
    * Get profilePicture
    * @return profilePicture
    **/
-  
   @Schema(example = "foto_profile.png", description = "")
-  
   public String getProfilePicture() {  
     return profilePicture;
   }
-
-
 
   public void setProfilePicture(String profilePicture) { 
     this.profilePicture = profilePicture;
@@ -286,21 +248,16 @@ public User(){
    * Get registerDate
    * @return registerDate
    **/
-  
   @Schema(example = "01/01/2020", description = "")
-  
   public String getRegisterDate() {  
     return registerDate;
   }
-
-
 
   public void setRegisterDate(String registerDate) { 
     this.registerDate = registerDate;
   }
 
   public User userProfiles(List<UserProfile> userProfiles) { 
-
     this.userProfiles = userProfiles;
     return this;
   }
@@ -330,60 +287,6 @@ public User(){
     this.userProfiles = userProfiles;
   }
 
-  public User creditCards(List<CreditCard> creditCards) { 
-
-    this.creditCards = creditCards;
-    return this;
-  }
-
-  public User addCreditCardsItem(CreditCard creditCardsItem) {
-    if (this.creditCards == null) {
-      this.creditCards = new ArrayList<CreditCard>();
-    }
-    this.creditCards.add(creditCardsItem);
-    return this;
-  }
-
-  /**
-   * Get creditCards
-   * @return creditCards
-   **/
-  
-  @Schema(description = "")
-  @Valid
-  public List<CreditCard> getCreditCards() {  
-    return creditCards;
-  }
-
-
-  public void setCreditCards(List<CreditCard> creditCards) { 
-    this.creditCards = creditCards;
-  }
-
-  public User language(Language language) { 
-
-    this.language = language;
-    return this;
-  }
-
-  /**
-   * Get language
-   * @return language
-   **/
-  
-  @Schema(description = "")
-  
-@Valid
-  public Language getLanguage() {  
-    return language;
-  }
-
-
-
-  public void setLanguage(Language language) { 
-    this.language = language;
-  }
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -402,14 +305,12 @@ public User(){
         Objects.equals(this.startDate, user.startDate) &&
         Objects.equals(this.profilePicture, user.profilePicture) &&
         Objects.equals(this.registerDate, user.registerDate) &&
-        Objects.equals(this.userProfiles, user.userProfiles) &&
-        Objects.equals(this.creditCards, user.creditCards) &&
-        Objects.equals(this.language, user.language);
+        Objects.equals(this.userProfiles, user.userProfiles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idUser, name, surname, username, email, password, startDate, profilePicture, registerDate, userProfiles, creditCards, language);
+    return Objects.hash(idUser, name, surname, username, email, password, startDate, profilePicture, registerDate, userProfiles);
   }
 
   @Override
@@ -427,8 +328,6 @@ public User(){
     sb.append("    profilePicture: ").append(toIndentedString(profilePicture)).append("\n");
     sb.append("    registerDate: ").append(toIndentedString(registerDate)).append("\n");
     sb.append("    userProfiles: ").append(toIndentedString(userProfiles)).append("\n");
-    sb.append("    creditCards: ").append(toIndentedString(creditCards)).append("\n");
-    sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("}");
     return sb.toString();
   }

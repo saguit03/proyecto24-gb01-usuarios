@@ -14,10 +14,6 @@ public class SubscriptionEntity {
     @Column(name = "idUser", nullable = false)
     private Long idUser;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subscriptionType", nullable = false)
-    private SubscriptionTypeEntity subscriptionType;
-    
     @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 
@@ -38,14 +34,6 @@ public class SubscriptionEntity {
 
     public void setidUser(Long idUser) {
         this.idUser = idUser;
-    }
-
-    public SubscriptionTypeEntity getSubscriptionType() {
-        return subscriptionType;
-    }
-
-    public void setSubscriptionType(SubscriptionTypeEntity subscriptionType) {
-        this.subscriptionType = subscriptionType;
     }
 
     public LocalDate getStartDate() {
@@ -71,7 +59,6 @@ public class SubscriptionEntity {
         SubscriptionEntity that = (SubscriptionEntity) o;
         return idSubscription == that.idSubscription &&
                idUser == that.idUser &&
-               subscriptionType == that.subscriptionType &&
                startDate.equals(that.startDate) &&
                endDate.equals(that.endDate);
     }
@@ -81,7 +68,6 @@ public class SubscriptionEntity {
         return "SubscriptionEntity{" +
                "idSubscription=" + idSubscription +
                ", idUser=" + idUser +
-               ", subscriptionType=" + subscriptionType +
                ", startDate=" + startDate +
                ", endDate=" + endDate +
                '}';

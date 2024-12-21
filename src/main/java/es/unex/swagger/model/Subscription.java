@@ -21,12 +21,6 @@ import javax.validation.constraints.*;
 
 
 public class Subscription   {
-  @JsonProperty("tipo-subscription")
-
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
-  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private SubscriptionType subscriptionType = null;
-
   @JsonProperty("idUser")
 
   private Long idUser = null;
@@ -45,50 +39,14 @@ public class Subscription   {
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String endDate = null;
 
-
-  public Subscription subscriptionType(SubscriptionType subscriptionType) { 
-
-    this.subscriptionType = subscriptionType;
-    return this;
-  }
-
-  /**
-   * Get subscriptionType
-   * @return subscriptionType
-   **/
-  
-  @Schema(description = "")
-  
-@Valid
-  public SubscriptionType getSubscriptionType() {  
-    return subscriptionType;
-  }
-
-
-
-  public void setSubscriptionType(SubscriptionType subscriptionType) { 
-    this.subscriptionType = subscriptionType;
-  }
-
-  public Subscription idUser(Long idUser) { 
-
-    this.idUser = idUser;
-    return this;
-  }
-
   /**
    * Get idUser
    * @return idUser
    **/
-  
   @Schema(required = true, description = "")
-  
-  
   public Long getidUser() {  
     return idUser;
   }
-
-
 
   public void setidUser(Long idUser) { 
 
@@ -105,10 +63,7 @@ public class Subscription   {
    * Get idSubscription
    * @return idSubscription
    **/
-  
   @Schema(example = "1", required = true, description = "")
-  
-  
   public Long getIdSubscription() {  
     return idSubscription;
   }
@@ -116,7 +71,6 @@ public class Subscription   {
 
 
   public void setIdSubscription(Long idSubscription) { 
-
     this.idSubscription = idSubscription;
   }
 
@@ -130,23 +84,15 @@ public class Subscription   {
    * Get startDate
    * @return startDate
    **/
-  
   @Schema(example = "08/10/2022", required = true, description = "")
-  
-  
   public String getStartDate() {  
     return startDate;
   }
 
-
-
   public void setStartDate(String startDate) { 
-
     this.startDate = startDate;
   }
-
   public Subscription endDate(String endDate) { 
-
     this.endDate = endDate;
     return this;
   }
@@ -155,14 +101,10 @@ public class Subscription   {
    * Get endDate
    * @return endDate
    **/
-  
   @Schema(example = "08/10/2024", description = "")
-  
   public String getEndDate() {  
     return endDate;
   }
-
-
 
   public void setEndDate(String endDate) { 
     this.endDate = endDate;
@@ -177,7 +119,7 @@ public class Subscription   {
       return false;
     }
     Subscription subscription = (Subscription) o;
-    return Objects.equals(this.subscriptionType, subscription.subscriptionType) &&
+    return
         Objects.equals(this.idUser, subscription.idUser) &&
         Objects.equals(this.idSubscription, subscription.idSubscription) &&
         Objects.equals(this.startDate, subscription.startDate) &&
@@ -186,15 +128,13 @@ public class Subscription   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(subscriptionType, idUser, idSubscription, startDate, endDate);
+    return Objects.hash(idUser, idSubscription, startDate, endDate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Subscription {\n");
-    
-    sb.append("    subscriptionType: ").append(toIndentedString(subscriptionType)).append("\n");
     sb.append("    idUser: ").append(toIndentedString(idUser)).append("\n");
     sb.append("    idSubscription: ").append(toIndentedString(idSubscription)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
