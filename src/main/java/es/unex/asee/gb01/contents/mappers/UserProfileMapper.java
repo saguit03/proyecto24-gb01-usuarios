@@ -10,6 +10,9 @@ import java.util.Collections;
 
 @Component
 public class UserProfileMapper {
+
+    private UserProfileMapper() {}
+
     public static UserProfileEntity toEntity(UserProfile profile) {
         UserProfileEntity entity = new UserProfileEntity();
         entity.setIdProfile(profile.getIdProfile());

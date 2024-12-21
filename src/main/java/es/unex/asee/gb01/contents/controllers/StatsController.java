@@ -16,8 +16,13 @@ import java.util.List;
 @RequestMapping("/stats")
 public class StatsController {
 
-    @Autowired
     StatsClient statsClient;
+
+    @Autowired
+    public StatsController(StatsClient statsClient) {
+        this.statsClient = statsClient;
+    }
+
 
     @GetMapping("/languages/{idLanguage}")
     public List<LanguageDTO> getLanguage(@PathVariable("idLanguage") Integer idLanguage) {
