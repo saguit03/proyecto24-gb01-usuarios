@@ -10,25 +10,20 @@ public class WatchLaterEntity {
     @Id
     @GeneratedValue
     private Long idWatchLater;
-
     
     @Column(name = "idUser", nullable = false)
     private Long idUser;
 
-    
     @Column(name = "idContent", nullable = false)
     private Long idContent;
 
-    // Constructor sin argumentos
     public WatchLaterEntity() {}
 
-    // Constructor con argumentos
     public WatchLaterEntity(Long idUser, Long idContent) {
         this.idUser = idUser;
         this.idContent = idContent;
     }
 
-    // Getters y Setters
     public Long getIdWatchLater() {
         return idWatchLater;
     }

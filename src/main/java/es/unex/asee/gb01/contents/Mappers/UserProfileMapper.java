@@ -22,4 +22,22 @@ public class UserProfileMapper {
         model.setPin(profileEntity.getPin());
         return model;
     }
+
+    public static List<UserProfileEntity> toEntityList(List<UserProfile> profiles) {
+        if (profiles == null || profiles.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return profiles.stream()
+                .map(UserProfileMapper::toEntity)
+                .collect(Collectors.toList());
+    }
+
+    public static List<UserProfile> toModelList(List<UserProfileEntity> profileEntities) {
+        if (profileEntities == null || profileEntities.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return profileEntities.stream()
+                .map(UserProfileMapper::toModel)
+                .collect(Collectors.toList());
+    }
 }

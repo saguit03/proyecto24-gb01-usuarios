@@ -11,14 +11,11 @@ public class UserProfileEntity {
     @GeneratedValue
     private Long idProfile;
 
-    
     @Column(name = "idUser", nullable = false)
     private Long idUser;
-
     
     @Column(name = "profileName", nullable = false)
     private String profileName;
-
     
     @Column(name = "pin", nullable = false)
     private String pin;
@@ -32,8 +29,6 @@ public class UserProfileEntity {
         this.profileName = profileName;
         this.pin = pin;
     }
-
-    // Getters y Setters
 
     public Long getIdProfile() {
         return idProfile;

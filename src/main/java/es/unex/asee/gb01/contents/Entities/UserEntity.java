@@ -45,15 +45,9 @@ public class UserEntity{
     @JoinColumn(name = "userlanguage")
   private LanguageEntity language = null;
 
-  public UserEntity( ){
-    // this.name = name;
-    // this.surname = surname;
-    // this.username= username;
-    // this.email = email;
-    // this.password = password;
-    
-  }
-  public UserEntity( String name, String surname, String username, String email, String password){
+  public UserEntity(){}
+
+  public UserEntity(String name, String surname, String username, String email, String password){
     this.name = name;
     this.surname = surname;
     this.username= username;
@@ -110,8 +104,6 @@ public class UserEntity{
       this.language = language;
     }
 
-
-
   public Long getIdUser() {
     return idUser;
   }
@@ -159,8 +151,5 @@ public class UserEntity{
   public void setPassword(String password) {
     this.password = password;
   }
-
-  
-
 
 }

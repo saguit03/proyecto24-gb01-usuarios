@@ -9,18 +9,14 @@ public class SubscriptionTypeEntity {
     @Id
     @GeneratedValue
     private Long idSubscriptionType;
-
     
     @Column(name = "subscriptionTypeName", nullable = false)
     private String subscriptionTypeName;
 
-    
     @Column(name = "quantity", nullable = false)
     private Float quantity;
 
-    public SubscriptionTypeEntity() {
-
-    }
+    public SubscriptionTypeEntity() {}
 
     public SubscriptionTypeEntity(Long idSubscriptionType, String subscriptionTypeName, Float quantity) {
         this.idSubscriptionType = idSubscriptionType;
@@ -58,28 +54,4 @@ public class SubscriptionTypeEntity {
         this.quantity = quantity;
     }
 
-    // @Override
-    // public boolean equals(Object o) {
-    //     if (this == o) return true;
-    //     if (o == null || getClass() != o.getClass()) return false;
-    //     SubscriptionTypeEntity that = (SubscriptionTypeEntity) o;
-    //     return Object.equals(idSubscriptionType, that.idSubscriptionType) &&
-    //            Object.equals(subscriptionTypeName, that.subscriptionTypeName) &&
-    //            Object.equals(quantity, that.quantity);
-               
-    // }
-
-    // @Override
-    // public int hashCode() {
-    //     return Object.hash(idSubscriptionType, subscriptionTypeName, quantity);
-    // }
-
-    // @Override
-    // public String toString() {
-    //     return "SubscriptionTypeEntity{" +
-    //            "idSubscriptionType=" + idSubscriptionType +
-    //            ", subscriptionTypeName='" + subscriptionTypeName + '\'' +
-    //            ", quantity=" + quantity +
-    //            '}';
-    // }
 }

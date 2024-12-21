@@ -10,7 +10,6 @@ public class SubscriptionEntity {
     @Id
     @GeneratedValue
     private Long idSubscription;
-
     
     @Column(name = "idUser", nullable = false)
     private Long idUser;
@@ -18,15 +17,12 @@ public class SubscriptionEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscriptionType", nullable = false)
     private SubscriptionTypeEntity subscriptionType;
-
     
     @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 
     @Column(name = "endDate")
     private LocalDate endDate;
-
-    // Getters y Setters
 
     public Long getIdSubscription() {
         return idSubscription;
@@ -79,11 +75,6 @@ public class SubscriptionEntity {
                startDate.equals(that.startDate) &&
                endDate.equals(that.endDate);
     }
-
-    // @Override
-    // public int hashCode() {
-    //     return Object.hash(idSubscription, idUser, subscriptionType, startDate, endDate);
-    // }
 
     @Override
     public String toString() {
