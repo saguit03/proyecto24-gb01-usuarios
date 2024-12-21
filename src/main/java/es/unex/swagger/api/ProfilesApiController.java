@@ -2,8 +2,8 @@ package es.unex.swagger.api;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import es.unex.asee.gb01.contents.Entities.UserProfileEntity;
-import es.unex.asee.gb01.contents.Mappers.UserProfileMapper;
+import es.unex.asee.gb01.contents.entities.UserProfileEntity;
+import es.unex.asee.gb01.contents.mappers.UserProfileMapper;
 import es.unex.asee.gb01.contents.repositories.UserProfileRepository;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserProfile;

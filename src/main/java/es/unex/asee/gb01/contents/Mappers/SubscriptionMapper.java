@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class SubscriptionMapper {
 
@@ -25,7 +28,6 @@ public class SubscriptionMapper {
         Subscription subscription = new Subscription();
         subscription.setIdSubscription(entity.getIdSubscription());
         subscription.setidUser(entity.getidUser());
-        subscription.setSubscriptionType(SubscriptionTypeMapper.toModel(entity.getSubscriptionType()));
         subscription.setStartDate(entity.getStartDate().format(DATE_FORMAT));
         subscription.setEndDate(entity.getEndDate() != null ? entity.getEndDate().format(DATE_FORMAT) : null);
 
@@ -43,7 +45,6 @@ public class SubscriptionMapper {
         SubscriptionEntity entity = new SubscriptionEntity();
         entity.setIdSubscription(model.getIdSubscription());
         entity.setidUser(model.getidUser());
-        entity.setSubscriptionType(SubscriptionTypeMapper.toEntity(model.getSubscriptionType()));
         entity.setStartDate(LocalDate.parse(model.getStartDate(), DATE_FORMAT));
         entity.setEndDate(model.getEndDate() != null ? LocalDate.parse(model.getEndDate(), DATE_FORMAT) : null);
 

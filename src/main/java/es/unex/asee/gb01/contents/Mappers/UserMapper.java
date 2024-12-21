@@ -5,7 +5,9 @@ import es.unex.asee.gb01.contents.entities.UserProfileEntity;
 import es.unex.swagger.model.User;
 import es.unex.swagger.model.UserLogIn;
 
+
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import org.springframework.stereotype.Component;
 
@@ -37,20 +39,6 @@ public class UserMapper {
             }
         }
 
-        // Convertir cards de crédito
-        if (userModel.getCreditCards() != null) {
-            // userEntity.setCreditCards(
-            //     userModel.getCreditCards().stream()
-            //     .map(CreditCardMapper::toEntity)
-            //     .collect(Collectors.toList())
-            // );
-        }
-
-        // Convertir language
-        if (userModel.getLanguage() != null) {
-            userEntity.setLanguage(LanguageMapper.toEntity(userModel.getLanguage()));
-        }
-
         return userEntity;
     }
 
@@ -69,11 +57,6 @@ public class UserMapper {
         userModel.setProfilePicture(userEntity.getProfilePicture());
         userModel.setRegisterDate(userEntity.getRegisterDate());
 
-        // Convertir language
-        if (userEntity.getLanguage() != null) {
-            userModel.setLanguage(LanguageMapper.toModel(userEntity.getLanguage()));
-        }
-
         return userModel;
     }
     public static List<User> toListModel(List<UserEntity> listUserEntity) {
@@ -90,10 +73,7 @@ public class UserMapper {
             userModel.setStartDate(userEntity.getStartDate());
             userModel.setProfilePicture(userEntity.getProfilePicture());
             userModel.setRegisterDate(userEntity.getRegisterDate());
-            // Convertir language
-            if (userEntity.getLanguage() != null) {
-                userModel.setLanguage(LanguageMapper.toModel(userEntity.getLanguage()));
-            }
+         
             listUserModel.add(userModel);
         }
 

@@ -37,14 +37,6 @@ public class UserEntity{
     @JoinColumn(name = "userprofiles")
   private List<UserProfileEntity> userProfiles = null;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "creditcards")
-  private List<CreditCardEntity> creditCards = null;
-
-@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userlanguage")
-  private LanguageEntity language = null;
-
   public UserEntity(){}
 
   public UserEntity(String name, String surname, String username, String email, String password){
@@ -86,22 +78,6 @@ public class UserEntity{
 
     public void setUserProfiles(List<UserProfileEntity> userProfiles) {
       this.userProfiles = userProfiles;
-    }
-
-    public List<CreditCardEntity> getCreditCards() {
-      return creditCards;
-    }
-
-    public void setCreditCards(List<CreditCardEntity> creditCards) {
-      this.creditCards = creditCards;
-    }
-
-    public LanguageEntity getLanguage() {
-      return language;
-    }
-
-    public void setLanguage(LanguageEntity language) {
-      this.language = language;
     }
 
   public Long getIdUser() {
