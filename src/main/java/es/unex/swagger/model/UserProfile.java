@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import es.unex.swagger.configuration.NotUndefined;
 
-import javax.validation.constraints.*;
 
 /**
  * UserProfile

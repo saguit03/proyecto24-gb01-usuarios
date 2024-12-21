@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import es.unex.asee.gb01.contents.entities.FavoriteEntity;
 import es.unex.asee.gb01.contents.repositories.FavoritesRepository;
+import es.unex.asee.gb01.contents.exceptions.UserNotOwnerException;
 
 @Service
 public class FavoriteService {
@@ -45,8 +46,8 @@ public class FavoriteService {
 
         // Verificar que el favorito pertenece al usuario
         if (!favorite.getIdUser().equals(idUser)) {
-            try {
-                throw new Exception("User does not own this favorite");
+            try{
+                throw new UserNotOwnerException("User does not own this favorite");
             } catch (Exception e) {
                 e.printStackTrace();
             }

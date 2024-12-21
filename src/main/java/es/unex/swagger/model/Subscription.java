@@ -11,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * Subscription
